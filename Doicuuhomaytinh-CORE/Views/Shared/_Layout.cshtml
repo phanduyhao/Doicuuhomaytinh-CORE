@@ -1,0 +1,468 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Data -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] | Đội cứu hộ máy tính Vinhuni </title>
+
+    <!-- Fav Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="~/media/logo/logo-CHMT.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/media/logo/logo-CHMT.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/media/logo/logo-CHMT.png">
+    <meta name="theme-color" content="#e43a90">
+
+    <!-- Dependency Styles -->
+    <link rel="stylesheet" href="~/dependencies/bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/dependencies/intro/css/stylesheet.css" type="text/css">
+    <link rel="stylesheet" href="~/dependencies/swiper/swiper.min.css" type="text/css">
+    <link rel="stylesheet" href="~/dependencies/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/dependencies/wow/css/animate.css" type="text/css">
+    <link rel="stylesheet" href="~/dependencies/magnific-popup/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/dependencies/jquery-ui/css/jquery-ui.css" type="text/css">
+    <link rel="stylesheet" href="~/dependencies/slick-carousel/css/slick.css" type="text/css">
+    <link rel="stylesheet" href="~/dependencies/colornip/css/colornip.min.css" type="text/css">
+    <link rel="stylesheet" href="~/dependencies/css-loader/css/css-loader.css" type="text/css">
+
+    <!-- Site Stylesheet -->
+    <link rel="stylesheet" href="~/assets/css/woocommerce.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/app.css" type="text/css">
+    <!-- <link id="theme" rel="stylesheet" href="~/assets/css/theme-color/theme-default.css" type="text/css"> -->
+    <link href="~/loginAssets/login.css" rel="stylesheet" />
+
+
+
+</head>
+
+<body id="home-version-1" class="home-version-1" data-style="default">
+
+    <div class="loader loader-bar-ping-pong is-active"></div>
+    <div id="site">
+
+
+
+        <!--=========================-->
+        <!--=        Navbar         =-->
+        <!--=========================-->
+        <header class="header header-magic-line">
+            <div class="header-inner">
+                <div class="tim-container clearfix">
+                    <div class="header-magic-line-inner clearfix">
+                        <div id="site-logo" class="float-left">
+                            <a href="index.html" class="logo-main">
+                                <img src="~/media/logo/logo-CHMT.png" width="85" alt="logo">
+                            </a>
+
+                            <a href="index.html" class="logo-stickky">
+                                <img src="~/media/logo/logo-CHMT.png" width="85" alt="logo">
+                            </a>
+                        </div>
+
+                        <ul class="user-login">
+                            <li>
+                                <a href="#" class="off-opener">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                                    <i class="fa fa-user-o" aria-hidden="true"></i>
+                                </a>
+                            </li>
+
+
+                            <li>
+                                <a href="javascript:void(0)" class="search-trigger"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                <div class="search-input-wrapper">
+                                    <input class="search-input" placeholder="Search" type="text">
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="nav">
+                            @await Component.InvokeAsync("MenuView")
+                            @*<ul class="group" id="header-menu-magic-line">
+                                <li class="text-dark menu-item-has-children ">
+                                    <a href="index.html">Trang chủ </a>
+                                </li>
+                                <li class="text-dark menu-item-has-children ">
+                                    <a href="index.html">Tổ chức Đội</a>
+                                </li>
+                                <li class="text-dark menu-item-has-children current_page_item">
+                                    <a href="artist.html">Giới thiệu</a>
+                                </li>
+                                <li class="text-dark menu-item-has-children">
+                                    <a href="contact.html">Liên hệ</a>
+                                </li>
+                                <li class="text-dark menu-item-has-children">
+                                    <a href="tabs.html">Blog</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="tabs.html">Sự kiện</a></li>
+                                        <li><a href="tabs-single.html">Thủ thuật công nghệ</a></li>
+                                        <li><a href="tabs-single.html">Cài đặt phần mềm</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="gallery.html">Thư viện</a></li>
+                            </ul>*@
+                        </div>
+
+                        <!-- /.nav -->
+                    </div>
+                </div>
+                <!-- /.tim-container -->
+            </div>
+            <!-- /.header-inner -->
+        </header>
+        <!-- /#header -->
+
+        <div class="offset-menu-two">
+            <a href="#" class="offset-closer"><img src="~/assets/img/offset-cross2.png" alt=""></a>
+
+            <div class="footer-about">
+                <p> There are many variations of passages of Lorem Ipsum available </p>
+
+                <div class="footer-contact">
+                    <div class="contact-details clearfix">
+                        <i class="fa fa-phone"></i>
+                        <p>Call: +01 245 815 8246</p>
+                    </div>
+
+                    <div class="contact-details clearfix">
+                        <i class="fa fa-envelope"></i>
+                        <p> info@yourdomain.com </p>
+                    </div>
+
+                    <div class="contact-details clearfix">
+                        <i class="fa fa-map-marker"></i>
+                        <p> 22 No. Street New York, West beas park.New York, USA </p>
+                    </div>
+                </div>
+                <!-- /.footer-address -->
+            </div>
+
+
+            <div class="offset-social-two">
+                <a href="">
+                    <img src="~/media/logo/logo-CHMT.png" width="85" alt="">
+                </a>
+                <ul>
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <!--=============================-->
+        <!--=        Mobile Nav         =-->
+        <!--=============================-->
+        <header id="mobile-nav-wrap">
+            <div class="mob-header-inner d-flex justify-content-between">
+                <div id="mobile-logo" class="d-flex justify-content-start">
+                    <a href="index.html"><img src="~/assets/img/logo.png" alt="Site Logo"></a>
+                </div>
+
+                <ul class="user-link nav justify-content-end">
+                    <li><a href="#"><i class="fa fa-user"></i>Đăng nhập</a></li>
+                    <li><a href="#"><i class="fa fa-sign-in"></i>Sign Up</a></li>
+                </ul>
+
+                <div id="nav-toggle" class="nav-toggle hidden-md">
+                    <div class="toggle-inner">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- /.mob-header-inner -->
+        </header>
+        <!-- /#mobile-header -->
+
+        <div class="mobile-menu-inner">
+
+            <div class="mobile-nav-top-wrap">
+                <div class="mob-header-inner clearfix">
+                    <div class="d-flex justify-content-start mobile-logo">
+                        <a href="index.html">
+                            <img src="~/assets/img/logo-dark.png" alt="Site Logo">
+                        </a>
+                    </div>
+
+                    <div class="close-menu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+                <!-- /.mob-header-inner -->
+
+                <div class="close-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+            <!-- /.mobile-nav-top-wrap -->
+
+            <nav id="accordian">
+                <ul class="accordion-menu">
+                    <li>
+                        <a href="#0" class="dropdownlink">Home</a>
+                        <ul class="submenuItems">
+                            <li><a href="index.html">Home One</a></li>
+                            <li><a href="index-two.html">Home Two</a></li>
+                            <li><a href="index-three.html">Home Three</a></li>
+                            <li><a href="index-four.html">Home Four</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#0" class="dropdownlink">Artist</a>
+                        <ul class="submenuItems">
+                            <li><a href="artist.html">Artist</a></li>
+                            <li><a href="artist-single.html">Artist Details</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="album.html">Album</a>
+                    </li>
+                    <li>
+                        <a href="#0" class="dropdownlink">Events</a>
+                        <ul class="submenuItems">
+                            <li><a href="event.html">Events</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="tabs.html">Tabs</a>
+
+                    </li>
+                    <li>
+                        <a href="#0" class="dropdownlink">Blog</a>
+                        <ul class="submenuItems">
+                            <li><a href="blog-list-right.html">Blog Standard</a></li>
+                            <li><a href="blog-grid-right.html">Blog Grid</a></li>
+                            <li><a href="blog-single.html">Blog Single</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="gallery.html">Gallery</a>
+                    </li>
+                    <li>
+                        <a href="#0" class="dropdownlink">Shop</a>
+                        <ul class="submenuItems">
+                            <li><a href="shop-right.html">Shop Right</a></li>
+                            <li><a href="shop-left.html">Shop Left</a></li>
+                            <li><a href="shop-single.html">Shop Details</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- /.mobile-menu-inner -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+
+                    <div class="wrapper">
+                        <div class="title-text">
+                            <div class="title login">Đăng nhập</div>
+                            <div class="title signup">Đăng ký</div>
+                        </div>
+                        <div class="form-container">
+                            <div class="slide-controls">
+                                <input type="radio" name="slide" id="login" checked="">
+                                <input type="radio" name="slide" id="signup">
+                                <label for="login" class="slide login">Đăng nhập</label>
+                                <label for="signup" class="slide signup">Đăng ký</label>
+                                <div class="slider-tab"></div>
+                            </div>
+                            <div class="form-inner">
+                                <form action="#" class="login">
+                                    <div class="field">
+                                        <input type="text" placeholder="Tên tài khoản" required="">
+                                    </div>
+                                    <div class="field">
+                                        <input type="password" placeholder="Mật khẩu" required="">
+                                    </div>
+                                    <div class="pass-link"><a href="#">Quên mật khẩu  ?</a></div>
+                                    <div class="field btn">
+                                        <div class="btn-layer"></div>
+                                        <input type="submit" value="Đăng nhập">
+                                    </div>
+                                    <div class="signup-link">Chưa có tài khoản? <a href="">Đăng ký ngay</a></div>
+                                </form>
+                                <form action="#" class="signup">
+                                    <div class="field">
+                                        <input type="text" placeholder="Tên tài khoản" required="">
+                                    </div>
+                                    <div class="field">
+                                        <input type="password" placeholder="Mật khẩu" required="">
+                                    </div>
+                                    <div class="field">
+                                        <input type="password" placeholder="Nhập lại mật khẩu" required="">
+                                    </div>
+                                    <div class="field btn">
+                                        <div class="btn-layer"></div>
+                                        <input type="submit" value="Đăng Ký">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--============================-->
+        @RenderBody()
+
+        <!--==============================-->
+        <!--=        	Footer         	 =-->
+        <!--==============================-->
+
+        <footer id="footer-3">
+            <div class="container">
+                <div class="d-flex justify-content-center row">
+                    <div class="col-xl-10">
+                        <div class="footer-feed">
+                            <div class="section-title style-four">
+                                <h2>FROM THE FEED</h2>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <img src="../../~/media/instagram/f1.jpg" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="../../~/media/instagram/f2.jpg" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="../../~/media/instagram/f3.jpg" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="../../~/media/instagram/f4.jpg" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="../../~/media/instagram/f5.jpg" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="../../~/media/instagram/f6.jpg" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="../../~/media/instagram/f7.jpg" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="../../~/media/instagram/f8.jpg" alt="">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer-three-bottom">
+                            <div class="footer-three-left">
+                                <a href="#">
+                                    <img src="~/media/logo/logo-CHMT.png" width="85" alt="">
+                                </a>
+                                <p>There are many variations of passages of Lorem Ipsum available but the majority. We are proud there are many variations of passages of Lorem Ipsum available but the majority of the users does use this.</p>
+                            </div>
+                            <div class="footer-three-right">
+                                <ul class="footer-three-menu">
+                                    <li><a href="#">Rules</a></li>
+                                    <li><a href="#">Terms of use</a></li>
+                                    <li><a href="#">Tickets</a></li>
+                                    <li><a href="#">policy</a></li>
+                                </ul>
+                                <div class="footer-social-three">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-cloud"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-vine"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-apple"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.col-xl- -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
+        </footer>
+        <!-- /#footer -->
+
+        <div class="backtotop">
+            <i class="fa fa-angle-up backtotop_btn"></i>
+        </div>
+
+
+    </div>
+    <!-- /#site -->
+    <!-- Dependency Scripts -->
+    <script src="~/dependencies/jquery/jquery.min.js"></script>
+    <script src="~/dependencies/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/dependencies/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/dependencies/swiper/js/swiper.min.js"></script>
+    <script src="~/dependencies/swiperRunner/swiperRunner.min.js"></script>
+    <script src="~/dependencies/wow/js/wow.min.js"></script>
+    <script src="~/dependencies/jquery.countdown/jquery.countdown.min.js"></script>
+    <script src="~/dependencies/magnific-popup/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/dependencies/jquery.spinner/js/jquery.spinner.js"></script>
+    <script src="~/dependencies/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/dependencies/masonry-layout/masonry.pkgd.min.js"></script>
+    <script src="~/dependencies/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="~/dependencies/slick-carousel/js/slick.min.js"></script>
+    <script src="~/assets/js/headroom.js"></script>
+    <script src="~/assets/js/soundmanager2.js"></script>
+    <script src="~/assets/js/mp3-player-button.js"></script>
+    <script src="~/assets/js/smoke.js"></script>
+    <script src="~/dependencies/FitText.js/js/jquery.fittext.js"></script>
+    <script src="~/dependencies/gmap3/js/gmap3.min.js"></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js'></script>
+    <script src='~/dependencies/tilt.js/js/tilt.jquery.js'></script>
+    <script src='~/assets/js/parallax.min.js'></script>
+    <!-- Player -->
+    <script src="~/dependencies/jPlayer/js/jquery.jplayer.min.js"></script>
+    <script src="~/dependencies/jPlayer/js/jplayer.playlist.min.js"></script>
+    <script src="~/assets/js/myplaylist.js"></script>
+
+    <!-- Remove It -->
+    <script src="~/dependencies/colornip/colornip.min.js"></script>
+
+    <!--Google map api -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsBrMPsyNtpwKXPPpG54XwJXnyobfMAIc"></script>
+
+    <!-- Site Scripts -->
+    <script src="~/assets/js/app.js"></script>
+    <script src="~/loginAssets/login.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>
