@@ -1,0 +1,88 @@
+﻿@model Doicuuhomaytinh_CORE.Models.Account
+
+@{
+    ViewData["Title"] = "Chỉnh sửa";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="font-weight-bold text-success ">Chỉnh sửa</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+                <table class="table table-bordered table-dark">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">Họ và tên</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Mật khẩu </th>
+
+                            <th scope="col" style="width:150px">Số điện thoại </th>
+                            <th scope="col" style="width:100px">Quyền</th>
+                            <th scope="col">Tác vụ</th>
+                        </tr>
+                    </thead>
+                   
+                    <form asp-action="Edit" class="jsgrid-grid-body" style="height: 821px;">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="AccountId" />
+                    <tbody>
+                        <tr class="text-center">
+                            <td >
+                                <div class="form-group">
+                                    <input required asp-for="FullName" class="form-control" />
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td >
+                                <div class="form-group">
+                                    <input required type="email" asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            <td >
+                                <div class="form-group">
+                                    <input required asp-for="Password" type="password" class="form-control" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td >
+                                <div class="form-group">
+                                    <input required asp-for="Phone" class="form-control" />
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td  >
+                                <div class="form-group">
+                                    <input required asp-for="RoleId" class="form-control" />
+                                    <span asp-validation-for="RoleId" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td >
+                                <div class="row align-items-center justify-content-around">
+                                   
+                                    <div class="form-group col-xl-5 col-12 btn mb-3 mb-xl-0 p-0">
+                                        <input type="submit" value="Lưu thay đổi" class="btn btn-primary " />
+                                    </div>
+                                    <div class="col-xl-2 col-0"></div>
+
+                                    <a asp-action="Delete" asp-route-id="@Model.AccountId" class="col-xl-5 col-12 btn bg-gradient-danger">Xóa</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    </form>
+
+                </table>
+                <a asp-action="Index" class="btn px-4 bg-gradient-success mt-4 float-right text-white font-weight-600">Trở lại</a>
+
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
+

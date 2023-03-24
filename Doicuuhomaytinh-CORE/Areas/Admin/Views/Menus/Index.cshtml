@@ -8,70 +8,56 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title ">Quản lý Menu</h3>
+            <h3 class="font-weight-bold text-success ">Quản lý Menu</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
             <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
-                <div class="jsgrid-grid-header jsgrid-header-scrollbar">
-                    <table class="jsgrid-table">
-                        <tr class="jsgrid-header-row">
-                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width:100px">MenuID</th>
-                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" >Tiêu đề</th>
-                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width:100px">Trạng thái</th>
-                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width:100px">Cấp </th>
-                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width:100px">Menu cha</th>
-                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width:100px">Sắp xếp</th>
-                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width:100px">Vị trí</th>
-                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" >Tác vụ</th>
+                <table class="table table-bordered table-dark">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">MenuID</th>
+                            <th scope="col">Tiêu đề</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col">Cấp </th>
+                            <th scope="col">Menu cha</th>
+                            <th scope="col">Sắp xếp</th>
+                            <th scope="col">Vị trí</th>
+                            <th scope="col">Tác vụ</th>
                         </tr>
-                        <tr class="jsgrid-filter-row" style="display: none;">
-                            <td class="jsgrid-cell" style="width: 150px;"><input type="text"></td>
-                            <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;"><input type="number"></td>
-                            <td class="jsgrid-cell" style="width: 200px;"><input type="text"></td>
-                            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
-                                <select>
-                                    <option value="0"></option>
-                                    <option value="1">United States</option>
-                                    <option value="2">Canada</option>
-                                    <option value="3">United Kingdom</option>
-                                    <option value="4">France</option>
-                                    <option value="5">Brazil</option>
-                                    <option value="6">China</option>
-                                    <option value="7">Russia</option>
-                                </select>
-                            </td>
-                            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"><input type="checkbox" readonly=""></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="jsgrid-grid-body" style="height: 821px;">
-                    <table class="jsgrid-table">
-                        <tbody>
-                            @foreach(var item in Model)
-                            {
-                                <tr class="jsgrid-row">
-                                    <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@item.MenuId</td>
-                                    <td class="jsgrid-cell jsgrid-align-center" >@item.MenuTitle</td>
-                                    <td class="jsgrid-cell jsgrid-align-center" style="width:100px"><input type="checkbox" ></td>
-                                    <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@item.Levels</td>
-                                    <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@item.ParentId</td>
-                                    <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@item.MenuOrder</td>
-                                    <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@item.Position</td>
-                                    <td class="jsgrid-cell jsgrid-align-center">
-                                        <div class="d-flex align-items-center justify-content-around">
-                                            <a asp-action="Edit" asp-route-id="@item.MenuId" class="btn w-25 bg-gradient-info">Chỉnh sửa</a>
-                                            <a asp-action="Details" asp-route-id="@item.MenuId" class="btn w-25 bg-gradient-success">Chi tiết </a>
-                                            <a asp-action="Delete" asp-route-id="@item.MenuId" class="btn w-25 bg-gradient-danger">Xóa</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                    <a asp-action="Create" class="btn btn-primary px-4 mt-4 float-right">Thêm mới</a>
-
-                </div>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="text-center">
+                                <td>@item.MenuId</td>
+                                <td>@item.MenuTitle</td>
+                                <td>
+                                    @if (item.Active == true)
+                                    {
+                                        <input type="checkbox" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox">
+                                    }
+                                </td>
+                                <td>@item.Levels</td>
+                                <td>@item.ParentId</td>
+                                <td>@item.MenuOrder</td>
+                                <td>@item.Position</td>
+                                <td>
+                                    <div class="row align-items-center justify-content-around">
+                                        <a asp-action="Edit" asp-route-id="@item.MenuId" class="col-xl-5 col-12 btn mb-3 mb-xl-0  bg-gradient-info">Chỉnh sửa</a>
+                                        <div class="col-xl-2 col-0"></div>
+                                        <a asp-action="Delete" asp-route-id="@item.MenuId" class="col-xl-5 col-12 btn bg-gradient-danger">Xóa</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <a asp-action="Create" class="btn btn-primary px-4 mt-4 float-right">Thêm mới</a>
                 <div class="jsgrid-pager-container">
                     <div class="jsgrid-pager">Pages: <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">First</a></span> <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">Prev</a></span> <span class="jsgrid-pager-page jsgrid-pager-current-page">1</span><span class="jsgrid-pager-page"><a href="javascript:void(0);">2</a></span><span class="jsgrid-pager-page"><a href="javascript:void(0);">3</a></span><span class="jsgrid-pager-page"><a href="javascript:void(0);">4</a></span><span class="jsgrid-pager-page"><a href="javascript:void(0);">5</a></span> <span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Next</a></span> <span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Last</a></span> &nbsp;&nbsp; 1 of 5 </div>
                 </div>
@@ -84,5 +70,5 @@
     <!-- /.card -->
 </section>
 @*
-                    
+
 *@

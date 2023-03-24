@@ -1,0 +1,49 @@
+﻿@model Doicuuhomaytinh_CORE.Models.Account
+
+@{
+    ViewData["Title"] = "Xóa bản ghi";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="font-weight-bold text-success">Chấp nhận xóa bản ghi này ?</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+                <table class="table table-bordered table-dark">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">AccountId</th>
+                            <th scope="col">Họ và tên</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Số điện thoại </th>
+                            <th scope="col" >Quyền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td scope="col">@Model.AccountId</td>
+                            <td>@Model.FullName</td>
+                            <td>@Model.Email</td>
+                            <td>@Model.Phone</td>
+                            <td>@Model.RoleId</td>
+                        </tr>
+                    </tbody>
+                  
+                </table>
+                <div class="d-flex align-items-center justify-content-between">
+                    <a asp-action="" class="btn px-4 bg-gradient-success mt-4 float-right text-white font-weight-600">Trở lại</a>
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="AccountId" />
+                        <input type="submit" value="Xóa" class="btn btn-danger mt-3 px-4" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>

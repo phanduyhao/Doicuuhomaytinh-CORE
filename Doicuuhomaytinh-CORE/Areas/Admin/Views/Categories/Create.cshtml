@@ -1,0 +1,98 @@
+﻿@model Doicuuhomaytinh_CORE.Models.Category
+
+@{
+    ViewData["Title"] = "Thêm Danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="font-weight-bold text-success ">Thêm Danh mục</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+                <table class="table table-bordered table-dark">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Ảnh</th>
+                            <th>Tên Danh mục</th>
+                            <th>Ordering </th>
+                            <th>Parent</th>
+                            <th>Levels</th>
+                            <th>Mô tả</th>
+                        </tr>
+                    </thead>
+                    <form asp-area="Admin" asp-controller="Categories" asp-action="Create" method="post" enctype="multipart/form-data" style="height: 821px;">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <tbody>
+                        <tr class="text-center">
+                            <td>
+                                <div class="form-group">
+                                    <input name="fThumb" type="file" class="form-control-file" asp-for="Thumb" />
+                                    <span asp-validation-for="Thumb" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="text" asp-for="CateName" class="form-control" />
+                                    <span asp-validation-for="CateName" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td style="width:100px">
+                                <div class="form-group">
+                                    <input type="number" asp-for="Ordering" class="form-control" />
+                                    <span asp-validation-for="Ordering" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td style="width:100px">
+                                <div class="form-group">
+                                    <input type="number" asp-for="Parent" class="form-control" />
+                                    <span asp-validation-for="Parent" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td style="width:100px">
+                                <div class="form-group">
+                                    <input asp-for="Levels" type="number" class="form-control" />
+                                    <span asp-validation-for="Levels" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="text" asp-for="Description" class="form-control" />
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="submit" value="Tạo mới" class="btn bg-gradient-info px-4" />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    </form>
+                </table>
+
+            </div>
+            <a asp-action="Index" class="btn px-4 bg-gradient-success mt-4 float-right text-white font-weight-600">Trở lại</a>
+        </div>
+    </div>
+    <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

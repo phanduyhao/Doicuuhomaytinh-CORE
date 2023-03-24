@@ -20,6 +20,7 @@ namespace Doicuuhomaytinh_CORE.Models
         public DateTime? CreateDate { get; set; }
         public int? RoleId { get; set; }
         public DateTime? LastLogin { get; set; }
+        public string? RoleName { get; set; }
 
         public virtual ICollection<News> News { get; set; }
     }

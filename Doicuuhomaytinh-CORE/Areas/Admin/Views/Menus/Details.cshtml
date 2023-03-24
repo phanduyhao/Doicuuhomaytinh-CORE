@@ -8,7 +8,7 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title ">Chi tiết</h3>
+            <h3 class="font-weight-bold text-success ">Chi tiết</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -25,24 +25,6 @@
                             <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width:100px">Vị trí</th>
                             <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable">Tác vụ</th>
                         </tr>
-                        <tr class="jsgrid-filter-row" style="display: none;">
-                            <td class="jsgrid-cell" style="width: 150px;"><input type="text"></td>
-                            <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;"><input type="number"></td>
-                            <td class="jsgrid-cell" style="width: 200px;"><input type="text"></td>
-                            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
-                                <select>
-                                    <option value="0"></option>
-                                    <option value="1">United States</option>
-                                    <option value="2">Canada</option>
-                                    <option value="3">United Kingdom</option>
-                                    <option value="4">France</option>
-                                    <option value="5">Brazil</option>
-                                    <option value="6">China</option>
-                                    <option value="7">Russia</option>
-                                </select>
-                            </td>
-                            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"><input type="checkbox" readonly=""></td>
-                        </tr>
                     </table>
                 </div>
                 <div class="jsgrid-grid-body" style="height: 821px;">
@@ -51,7 +33,16 @@
                                 <tr class="jsgrid-row">
                                     <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.MenuId</td>
                                     <td class="jsgrid-cell jsgrid-align-center">@Model.MenuTitle</td>
-                                    <td class="jsgrid-cell jsgrid-align-center" style="width:100px"><input type="checkbox"></td>
+                                    <td class="jsgrid-cell jsgrid-align-center" style="width:100px">
+                                    @if (Model.Active == true)
+                                    {
+                                        <input type="checkbox" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox">
+                                    }
+                                    </td>
                                     <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.Levels</td>
                                     <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.ParentId</td>
                                     <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.MenuOrder</td>

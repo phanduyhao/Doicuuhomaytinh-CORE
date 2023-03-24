@@ -1,0 +1,108 @@
+﻿@model Doicuuhomaytinh_CORE.Models.Category
+
+@{
+    ViewData["Title"] = "Chỉnh sửa Danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="font-weight-bold text-success ">Chỉnh sửa Danh mục</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+                <table class="table table-bordered table-dark">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Ảnh</th>
+                            <th>Tên Danh mục</th>
+                            <th>Ordering </th>
+                            <th>Parent</th>
+                            <th>Levels</th>
+                            <th>Mô tả</th>
+                            <th>Tác vụ</th>
+
+                        </tr>
+                    </thead>
+                    <form asp-area="Admin" asp-controller="Categories" asp-action="Edit" method="post" enctype="multipart/form-data" style="height: 821px;">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="CateId" />
+
+                    <tbody>
+                        <tr class="text-center">
+                            <td style="width:150px">
+                                <div class="form-group">
+                                    <input name="fThumb" type="file" class="form-control-file" asp-for="Thumb" />
+                                    <span asp-validation-for="Thumb" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="text" asp-for="CateName" class="form-control" />
+                                    <span asp-validation-for="CateName" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td style="width:100px">
+                                <div class="form-group">
+                                    <input type="number" asp-for="Ordering" class="form-control" />
+                                    <span asp-validation-for="Ordering" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td style="width:100px">
+                                <div class="form-group">
+                                    <input type="number" asp-for="Parent" class="form-control" />
+                                    <span asp-validation-for="Parent" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td style="width:100px">
+                                <div class="form-group">
+                                    <input asp-for="Levels" type="number" class="form-control" />
+                                    <span asp-validation-for="Levels" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td style="width:400px">
+                                <div class="form-group">
+                                    <input type="text" asp-for="Description" class="form-control" />
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td style="width:360px">
+                                <div class="row align-items-center justify-content-around">
+
+                                    <div class="form-group col-xl-5 col-12 btn mb-3 mb-xl-0 p-0">
+                                        <input type="submit" value="Lưu thay đổi" class="btn btn-primary w-100" />
+                                    </div>
+                                    <div class="col-xl-2 col-0"></div>
+
+                                    <a asp-action="Delete" asp-route-id="@Model.CateId" class="col-xl-5 col-12 btn bg-gradient-danger">Xóa</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    </form>
+                </table>
+
+            </div>
+            <a asp-action="Index" class="btn px-4 bg-gradient-success mt-4 float-right text-white font-weight-600">Trở lại</a>
+        </div>
+    </div>
+    <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

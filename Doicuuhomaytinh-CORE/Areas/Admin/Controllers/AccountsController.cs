@@ -6,21 +6,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Doicuuhomaytinh_CORE.Models;
+using Microsoft.AspNetCore.Authorization;
+using Doicuuhomaytinh_CORE.Areas.Admin.Models;
+using System.Security.Claims;
 using Doicuuhomaytinh_CORE.Helpper;
+using Doicuuhomaytinh_CORE.Extension;
+using System.Security.Principal;
 
 namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class MenusController : Controller
+    public class AccountsController : Controller
     {
+
         private readonly QuanLyDCHMTContext _context;
 
-        public MenusController(QuanLyDCHMTContext context)
+        public AccountsController(QuanLyDCHMTContext context)
         {
             _context = context;
+
         }
 
-        // GET: Admin/Menus
+        // GET: Admin/Accounts
         public async Task<IActionResult> Index()
         {
             if (!User.Identity.IsAuthenticated)
@@ -30,10 +37,11 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             var taikhoanID = HttpContext.Session.GetString("AccountId");
             if (taikhoanID == null)
                 return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
-            return View(await _context.Menus.ToListAsync());
+            
+            return View(await _context.Accounts.ToListAsync());
         }
 
-        // GET: Admin/Menus/Details/5
+        // GET: Admin/Accounts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (!User.Identity.IsAuthenticated)
@@ -43,24 +51,26 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             var taikhoanID = HttpContext.Session.GetString("AccountId");
             if (taikhoanID == null)
                 return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
-            if (id == null || _context.Menus == null)
+            if (id == null || _context.Accounts == null)
             {
                 return NotFound();
             }
 
-            var menu = await _context.Menus
-                .FirstOrDefaultAsync(m => m.MenuId == id);
-            if (menu == null)
+            var account = await _context.Accounts
+                .FirstOrDefaultAsync(m => m.AccountId == id);
+            if (account == null)
             {
                 return NotFound();
             }
 
-            return View(menu);
+            return View(account);
         }
 
-        // GET: Admin/Menus/Create
+        // GET: Admin/Accounts/Create
         public IActionResult Create()
         {
+            ViewData["PhanQuyen"] = new SelectList(_context.Accounts, "RoleId", "RoleName");
+
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
@@ -71,12 +81,12 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Admin/Menus/Create
+        // POST: Admin/Accounts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MenuId,MenuTitle,Alias,Active,Levels,ParentId,ControllerName,ActionName,MenuOrder,Position")] Menu menu)
+        public async Task<IActionResult> Create([Bind("AccountId,FullName,Email,Phone,Password,Salt,Active,CreateDate,RoleId,LastLogin")] Account account)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -87,17 +97,26 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
                 return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
             if (ModelState.IsValid)
             {
-                menu.Alias = Utilities.SEOUrl(menu.MenuTitle);
-                _context.Add(menu);
+                string salt = Utilities.GetRandomKey();
+                account.Password = (account.Password + salt.Trim()).ToMD5();
+                account.Salt = salt;
+                account.CreateDate = DateTime.Now;
+                if (account.RoleId == 1)
+                    account.RoleName = "Admin";
+                if (account.RoleId == 2)
+                    account.RoleName = "Staff";
+                _context.Add(account);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(menu);
+            ViewData["PhanQuyen"] = new SelectList(_context.Accounts, "RoleId", "RoleName",account.RoleId);
+            return View(account);
         }
 
-        // GET: Admin/Menus/Edit/5
+        // GET: Admin/Accounts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
@@ -105,25 +124,26 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             var taikhoanID = HttpContext.Session.GetString("AccountId");
             if (taikhoanID == null)
                 return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
-            if (id == null || _context.Menus == null)
+            if (id == null || _context.Accounts == null)
             {
                 return NotFound();
             }
 
-            var menu = await _context.Menus.FindAsync(id);
-            if (menu == null)
+            var account = await _context.Accounts.FindAsync(id);
+            if (account == null)
             {
                 return NotFound();
             }
-            return View(menu);
+            ViewData["PhanQuyen"] = new SelectList(_context.Accounts, "RoleId", "RoleName", account.RoleId);
+            return View(account);
         }
 
-        // POST: Admin/Menus/Edit/5
+        // POST: Admin/Accounts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MenuId,MenuTitle,Alias,Active,Levels,ParentId,ControllerName,ActionName,MenuOrder,Position")] Menu menu)
+        public async Task<IActionResult> Edit(int id, [Bind("AccountId,FullName,Email,Phone,Password,Salt,Active,CreateDate,RoleId,LastLogin")] Account account)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -132,7 +152,7 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             var taikhoanID = HttpContext.Session.GetString("AccountId");
             if (taikhoanID == null)
                 return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
-            if (id != menu.MenuId)
+            if (id != account.AccountId)
             {
                 return NotFound();
             }
@@ -141,13 +161,20 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             {
                 try
                 {
-                    menu.Alias = Utilities.SEOUrl(menu.MenuTitle);
-                    _context.Update(menu);
+                    string salt = Utilities.GetRandomKey();
+                    account.Password = (account.Password + salt.Trim()).ToMD5();
+                    account.Salt = salt;
+                    account.CreateDate = DateTime.Now;
+                    if (account.RoleId == 1)
+                        account.RoleName = "Admin";
+                    if (account.RoleId == 2)
+                        account.RoleName = "Staff";
+                    _context.Update(account);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MenuExists(menu.MenuId))
+                    if (!AccountExists(account.AccountId))
                     {
                         return NotFound();
                     }
@@ -158,10 +185,12 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(menu);
+          
+            ViewData["PhanQuyen"] = new SelectList(_context.Accounts, "RoleId", "RoleName", account.RoleId);
+            return View(account);
         }
 
-        // GET: Admin/Menus/Delete/5
+        // GET: Admin/Accounts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (!User.Identity.IsAuthenticated)
@@ -171,22 +200,22 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             var taikhoanID = HttpContext.Session.GetString("AccountId");
             if (taikhoanID == null)
                 return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
-            if (id == null || _context.Menus == null)
+            if (id == null || _context.Accounts == null)
             {
                 return NotFound();
             }
 
-            var menu = await _context.Menus
-                .FirstOrDefaultAsync(m => m.MenuId == id);
-            if (menu == null)
+            var account = await _context.Accounts
+                .FirstOrDefaultAsync(m => m.AccountId == id);
+            if (account == null)
             {
                 return NotFound();
             }
 
-            return View(menu);
+            return View(account);
         }
 
-        // POST: Admin/Menus/Delete/5
+        // POST: Admin/Accounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -198,23 +227,23 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             var taikhoanID = HttpContext.Session.GetString("AccountId");
             if (taikhoanID == null)
                 return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
-            if (_context.Menus == null)
+            if (_context.Accounts == null)
             {
-                return Problem("Entity set 'QuanLyDCHMTContext.Menus'  is null.");
+                return Problem("Entity set 'QuanLyDCHMTContext.Accounts'  is null.");
             }
-            var menu = await _context.Menus.FindAsync(id);
-            if (menu != null)
+            var account = await _context.Accounts.FindAsync(id);
+            if (account != null)
             {
-                _context.Menus.Remove(menu);
+                _context.Accounts.Remove(account);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MenuExists(int id)
+        private bool AccountExists(int id)
         {
-          return _context.Menus.Any(e => e.MenuId == id);
+          return _context.Accounts.Any(e => e.AccountId == id);
         }
     }
 }

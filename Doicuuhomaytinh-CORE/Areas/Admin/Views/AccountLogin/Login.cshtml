@@ -1,0 +1,75 @@
+﻿@model Doicuuhomaytinh_CORE.Areas.Admin.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Đăng nhập";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutLogin.cshtml";
+}
+
+
+<div class="d-flex align-items-center justify-content-center w-100 h-100 " style="background:#0000008a">
+    <div class="login-box">
+        <div class="login-logo">
+            <a class="" href="/">
+                <img src="/media/logo/logo-CHMT.png" alt="Đội CHMT" width="80" height="80">
+                <h4 class="text-white font-weight-bold">Đội CHMT</h4>
+            </a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <h4 class="text-center text-dark font-weight-bold">Đăng nhập!</h4>
+
+                <form asp-area="Admin" asp-controller="AccountLogin" asp-action="Login" method="POST">
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" asp-for="Email" placeholder="Email" required="Không được để trống trường này!">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" asp-for="Password" class="form-control" placeholder="Password" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="text-danger font-weight-bold">@ViewBag.Error</h6>
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-5">
+                            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+@*
+                <div class="social-auth-links text-center mb-3">
+                    <p>- OR -</p>
+                    <a href="#" class="btn btn-block btn-primary">
+                        <i class="fab fa-facebook mr-2"></i>Đăng nhập bằng Facebook
+                    </a>
+                    <a href="#" class="btn btn-block btn-danger">
+                        <i class="fab fa-google-plus mr-2"></i> Đăng nhập bằng Google+
+                    </a>
+                </div>*@
+                <!-- /.social-auth-links -->
+
+                <p class="mb-1">
+                    <a href="forgot-password.html">Quên mật khẩu?</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+</div>

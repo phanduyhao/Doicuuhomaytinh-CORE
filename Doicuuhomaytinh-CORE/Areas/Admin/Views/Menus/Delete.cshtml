@@ -5,72 +5,85 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Delete</h1>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Menu</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MenuTitle)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MenuTitle)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Alias)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Alias)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Levels)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Levels)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ParentId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ParentId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ControllerName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ControllerName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ActionName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ActionName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MenuOrder)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MenuOrder)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Position)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Position)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="MenuId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
-</div>
+<h3>Chấp nhận xóa bản ghi này ?</h3>
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="font-weight-bold text-success">Chi tiết</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+                <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                    <table class="jsgrid-table">
+                        <tr class="text-center>
+                            <th scope="col" style="width:100px">MenuID</th>
+                            <th scope="col">Tiêu đề</th>
+                            <th scope="col" style="width:100px">Trạng thái</th>
+                            <th scope="col" style="width:100px">Cấp </th>
+                            <th scope="col" style="width:100px">Menu cha</th>
+                            <th scope="col" style="width:100px">Sắp xếp</th>
+                            <th scope="col" style="width:100px">Vị trí</th>
+                        </tr>
+                        <tr class="jsgrid-filter-row" style="display: none;">
+                            <td class="jsgrid-cell" style="width: 150px;"><input type="text"></td>
+                            <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;"><input type="number"></td>
+                            <td class="jsgrid-cell" style="width: 200px;"><input type="text"></td>
+                            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
+                                <select>
+                                    <option value="0"></option>
+                                    <option value="1">United States</option>
+                                    <option value="2">Canada</option>
+                                    <option value="3">United Kingdom</option>
+                                    <option value="4">France</option>
+                                    <option value="5">Brazil</option>
+                                    <option value="6">China</option>
+                                    <option value="7">Russia</option>
+                                </select>
+                            </td>
+                            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"><input type="checkbox" readonly=""></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="jsgrid-grid-body" style="height: 821px;">
+                    <table class="jsgrid-table">
+                        <tbody>
+                            <tr class="jsgrid-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.MenuId</td>
+                                <td class="jsgrid-cell jsgrid-align-center">@Model.MenuTitle</td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width:100px">
+                                    @if (Model.Active == true)
+                                    {
+                                        <input type="checkbox" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox">
+                                    }
+                                </td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.Levels</td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.ParentId</td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.MenuOrder</td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.Position</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex align-items-center justify-content-between">
+
+                        <a asp-action="Index" class="btn px-4 bg-gradient-success mt-4 float-right text-white font-weight-600">Trở lại</a>
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="MenuId" />
+                            <input type="submit" value="Xóa" class="btn btn-danger mt-3 px-4" />
+                        </form>
+                    </div>
+
+                </div>
+                <div class="jsgrid-load-shader" style="display: none; position: absolute; inset: 0px; z-index: 1000;"></div>
+                <div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...</div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>

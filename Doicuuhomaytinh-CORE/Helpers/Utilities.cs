@@ -5,9 +5,33 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
+using System.Runtime.CompilerServices;
 
 namespace Doicuuhomaytinh_CORE.Helpper
 {
+    public class Functions
+    {
+        public static int _AccountId = 0;
+        public static string _FullName = String.Empty;
+        public static string _Email = String.Empty;
+        public static string _Password = String.Empty;
+        public static string _Message = String.Empty;
+        public static string _MessageEmail = String.Empty;
+
+        public static string MD5Hash(string text)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
+            byte[] result = md5.Hash;
+            StringBuilder stringBuilder = new StringBuilder();
+            for(int i =0; i < result.Length; i++)
+            {
+                stringBuilder.Append(result[i].ToString("x2"));
+            }
+            return stringBuilder.ToString();
+        }
+    }
     public static class Utilities
     {
         public static string StripHTML(string input)

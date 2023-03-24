@@ -56,6 +56,8 @@ namespace Doicuuhomaytinh_CORE.Models
                     .HasMaxLength(11)
                     .IsUnicode(false);
 
+                entity.Property(e => e.RoleName).HasMaxLength(255);
+
                 entity.Property(e => e.Salt)
                     .HasMaxLength(11)
                     .IsUnicode(false);
