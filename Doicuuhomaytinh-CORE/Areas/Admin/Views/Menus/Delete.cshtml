@@ -1,23 +1,19 @@
 ﻿@model Doicuuhomaytinh_CORE.Models.Menu
 
 @{
-    ViewData["Title"] = "Xóa";
+    ViewData["Title"] = "Xóa Danh mục";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-
-<h3>Chấp nhận xóa bản ghi này ?</h3>
 <section class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="font-weight-bold text-success">Chi tiết</h3>
+            <h3 class="font-weight-bold text-success">Chấp nhận xóa Menu @Model.MenuTitle</h3>
         </div>
-        <!-- /.card-header -->
         <div class="card-body">
             <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
-                <div class="jsgrid-grid-header jsgrid-header-scrollbar">
-                    <table class="jsgrid-table">
-                        <tr class="text-center>
+                <table class="table table-bordered table-dark">
+                    <thead>
+                        <tr class="text-center">
                             <th scope="col" style="width:100px">MenuID</th>
                             <th scope="col">Tiêu đề</th>
                             <th scope="col" style="width:100px">Trạng thái</th>
@@ -26,64 +22,46 @@
                             <th scope="col" style="width:100px">Sắp xếp</th>
                             <th scope="col" style="width:100px">Vị trí</th>
                         </tr>
-                        <tr class="jsgrid-filter-row" style="display: none;">
-                            <td class="jsgrid-cell" style="width: 150px;"><input type="text"></td>
-                            <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;"><input type="number"></td>
-                            <td class="jsgrid-cell" style="width: 200px;"><input type="text"></td>
-                            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
-                                <select>
-                                    <option value="0"></option>
-                                    <option value="1">United States</option>
-                                    <option value="2">Canada</option>
-                                    <option value="3">United Kingdom</option>
-                                    <option value="4">France</option>
-                                    <option value="5">Brazil</option>
-                                    <option value="6">China</option>
-                                    <option value="7">Russia</option>
-                                </select>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td style="width:100px">@Model.MenuId</td>
+                            <td class="jsgrid-cell jsgrid-align-center">@Model.MenuTitle</td>
+                            <td style="width:100px">
+                                @if (Model.Active == true)
+                                {
+                                    <input type="checkbox" checked>
+                                }
+                                else
+                                {
+                                    <input type="checkbox">
+                                }
                             </td>
-                            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"><input type="checkbox" readonly=""></td>
+                            <td style="width:100px">@Model.Levels</td>
+                            <td style="width:100px">@Model.ParentId</td>
+                            <td style="width:100px">@Model.MenuOrder</td>
+                            <td style="width:100px">@Model.Position</td>
                         </tr>
-                    </table>
+                    </tbody>
+                </table>
+                <div class="d-flex align-items-center justify-content-between">
+                    <a asp-action="" class="btn px-4 bg-gradient-success mt-4 float-right text-white font-weight-600">Trở lại</a>
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="MenuId" />
+                        <input type="submit" value="Xóa" class="btn btn-danger mt-3 px-4" />
+                    </form>
                 </div>
-                <div class="jsgrid-grid-body" style="height: 821px;">
-                    <table class="jsgrid-table">
-                        <tbody>
-                            <tr class="jsgrid-row">
-                                <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.MenuId</td>
-                                <td class="jsgrid-cell jsgrid-align-center">@Model.MenuTitle</td>
-                                <td class="jsgrid-cell jsgrid-align-center" style="width:100px">
-                                    @if (Model.Active == true)
-                                    {
-                                        <input type="checkbox" checked>
-                                    }
-                                    else
-                                    {
-                                        <input type="checkbox">
-                                    }
-                                </td>
-                                <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.Levels</td>
-                                <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.ParentId</td>
-                                <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.MenuOrder</td>
-                                <td class="jsgrid-cell jsgrid-align-center" style="width:100px">@Model.Position</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="d-flex align-items-center justify-content-between">
-
-                        <a asp-action="Index" class="btn px-4 bg-gradient-success mt-4 float-right text-white font-weight-600">Trở lại</a>
-                        <form asp-action="Delete">
-                            <input type="hidden" asp-for="MenuId" />
-                            <input type="submit" value="Xóa" class="btn btn-danger mt-3 px-4" />
-                        </form>
-                    </div>
-
-                </div>
-                <div class="jsgrid-load-shader" style="display: none; position: absolute; inset: 0px; z-index: 1000;"></div>
-                <div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...</div>
             </div>
         </div>
-        <!-- /.card-body -->
     </div>
-    <!-- /.card -->
 </section>
+
+
+
+
+
+
+
+
+
+

@@ -21,6 +21,8 @@
                             <th scope="col">Email</th>
                             <th scope="col">Số điện thoại </th>
                             <th scope="col">Quyền</th>
+                            <th scope="col">PASS</th>
+                            <th scope="col">SALT</th>
                             <th scope="col">Tác vụ</th>
                         </tr>
                     </thead>
@@ -34,6 +36,8 @@
                                 <td>@item.Email</td>
                                 <td>@item.Phone</td>
                                 <td>@item.RoleName</td>
+                                <td>  @item.Password</td>
+                                <td> @item.Salt</td>
                                 <td>
                                     <div class="row align-items-center justify-content-around">
                                         <a asp-action="Edit" asp-route-id="@item.AccountId" class="col-xl-5 col-12 btn mb-3 mb-xl-0  bg-gradient-info">Chỉnh sửa</a>
@@ -42,6 +46,7 @@
                                     </div>
                                 </td>
                             </tr>
+
                         }
                     </tbody>
                 </table>

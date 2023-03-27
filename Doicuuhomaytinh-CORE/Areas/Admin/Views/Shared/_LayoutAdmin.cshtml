@@ -172,19 +172,14 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image p-0">
-                        <img src="~/Admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <div class="user-panel mt-3 pb-3 mb-3 ">
+                    <div class="image">
+                        <img src="~/Admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2 mr-2" alt="User Image">
+                        @if (User.Identity.IsAuthenticated)
+                            @User.Identity.Name;
                     </div>
                     <div class="info d-flex align-items-center ">
-                        <a href="#" class="d-block mr-3">
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                @User.Identity.Name
-                                ;
-                            }
-                        </a>
-                        <a asp-area="Admin" asp-controller="AccountLogin" asp-action="AdminLogout" class="d-flex align-items-center">Log out<i class="ml-2 fa-solid fa-right-from-bracket"></i></a>
+                        <a asp-area="Admin" asp-controller="AccountLogin" asp-action="AdminLogout" class="mt-2">Đăng xuất<i class="ml-2 fa-solid fa-right-from-bracket"></i></a>
                     </div>
                 </div>
 
@@ -236,6 +231,13 @@
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Quản lý danh mục
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="AdminNews" asp-action="Index" class="nav-link">
+                                <i class="nav-icon fas fa-edit"></i>
+                                <p>Quản lý bài viết
                                 </p>
                             </a>
                         </li>

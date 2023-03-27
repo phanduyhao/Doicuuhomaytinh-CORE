@@ -21,13 +21,14 @@
                             <th>Parent</th>
                             <th>Levels</th>
                             <th>Mô tả</th>
+                            <th>Tác vụ</th>
                         </tr>
                     </thead>
-                    <form asp-area="Admin" asp-controller="Categories" asp-action="Create" method="post" enctype="multipart/form-data" style="height: 821px;">
+                    <form asp-area="Admin" asp-controller="Categories" asp-action="Create"  method="post" enctype="multipart/form-data" style="height: 821px;">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <tbody>
                         <tr class="text-center">
-                            <td>
+                            <td style="width:150px">
                                 <div class="form-group">
                                     <input name="fThumb" type="file" class="form-control-file" asp-for="Thumb" />
                                     <span asp-validation-for="Thumb" class="text-danger"></span>
@@ -57,7 +58,7 @@
                                     <span asp-validation-for="Levels" class="text-danger"></span>
                                 </div>
                             </td>
-                            <td>
+                            <td style="width:400px">
                                 <div class="form-group">
                                     <input type="text" asp-for="Description" class="form-control" />
                                     <span asp-validation-for="Description" class="text-danger"></span>

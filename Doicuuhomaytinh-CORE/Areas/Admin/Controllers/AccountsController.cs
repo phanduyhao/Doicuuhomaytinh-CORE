@@ -37,7 +37,7 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             var taikhoanID = HttpContext.Session.GetString("AccountId");
             if (taikhoanID == null)
                 return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
-            
+
             return View(await _context.Accounts.ToListAsync());
         }
 
@@ -156,14 +156,28 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+     
             if (ModelState.IsValid)
             {
                 try
                 {
-                    string salt = Utilities.GetRandomKey();
-                    account.Password = (account.Password + salt.Trim()).ToMD5();
-                    account.Salt = salt;
+                    if (account.Password != null)
+                    {
+                        string salt = Utilities.GetRandomKey();
+                        account.Password = (account.Password + salt.Trim()).ToMD5();
+                        account.Salt = salt;
+                    }
+                    else
+                    {
+                        account = _context.Accounts.FirstOrDefault(a => a.AccountId == id);
+                        string pass = account.Password;
+                        string salt = account.Salt;
+                        account.Password = pass;
+                        account.Salt = salt;
+                    }
+                    /*  string salt = Utilities.GetRandomKey();
+                      account.Password = (account.Password + salt.Trim()).ToMD5();
+                      account.Salt = salt;*/
                     account.CreateDate = DateTime.Now;
                     if (account.RoleId == 1)
                         account.RoleName = "Admin";

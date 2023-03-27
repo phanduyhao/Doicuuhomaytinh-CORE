@@ -25,9 +25,10 @@
 
                         </tr>
                     </thead>
-                    <form asp-area="Admin" asp-controller="Categories" asp-action="Edit" method="post" enctype="multipart/form-data" style="height: 821px;">
+                    <form asp-area="Admin" asp-controller="Categories" asp-action="Edit" asp-route-id="@Model.CateId" method="post" enctype="multipart/form-data" style="height: 821px;">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="CateId" />
+                        <input type="hidden" asp-for="Thumb" />
 
                     <tbody>
                         <tr class="text-center">

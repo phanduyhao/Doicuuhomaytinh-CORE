@@ -19,16 +19,25 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
     public class CategoriesController : Controller
     {
         private readonly QuanLyDCHMTContext _context;
-
-        public CategoriesController(QuanLyDCHMTContext context)
+        public INotyfService _notyfService { get; }
+        public CategoriesController(QuanLyDCHMTContext context, INotyfService notyfService)
         {
             _context = context;
+            _notyfService = notyfService;   
         }
 
         // GET: Admin/Categories
         public async Task<IActionResult> Index()
         {
-              return _context.Categories != null ? 
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
+            }
+            var taikhoanID = HttpContext.Session.GetString("AccountId");
+            if (taikhoanID == null)
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
+            return _context.Categories != null ? 
                           View(await _context.Categories.ToListAsync()) :
                           Problem("Entity set 'QuanLyDCHMTContext.Categories'  is null.");
         }
@@ -54,6 +63,14 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
         // GET: Admin/Categories/Create
         public IActionResult Create()
         {
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
+            }
+            var taikhoanID = HttpContext.Session.GetString("AccountId");
+            if (taikhoanID == null)
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
             return View();
         }
 
@@ -64,6 +81,14 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CateId,CateName,Alias,Thumb,Active,Ordering,Parent,Levels,Description")] Category category, Microsoft.AspNetCore.Http.IFormFile fThumb)
         {
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
+            }
+            var taikhoanID = HttpContext.Session.GetString("AccountId");
+            if (taikhoanID == null)
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
             if (ModelState.IsValid)
             {
                 if (fThumb != null)
