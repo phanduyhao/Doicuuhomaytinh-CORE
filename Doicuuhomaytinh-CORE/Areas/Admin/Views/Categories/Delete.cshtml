@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
             <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
-                <table class="table table-bordered table-dark">
+                <table class="table table-bordered table-white">
                     <thead>
                         <tr class="text-center">
                             <th scope="col">CateID</th>
@@ -39,10 +39,10 @@
                     </tbody>
                 </table>
                 <div class="d-flex align-items-center justify-content-between">
-                    <a asp-action="" class="btn px-4 bg-gradient-success mt-4 float-right text-white font-weight-600">Trở lại</a>
+                    <a asp-action="" class="btn px-4 bg-gradient-success mt-4 float-right text-white font-weight-bold">Trở lại</a>
                     <form asp-action="Delete">
                         <input type="hidden" asp-for="CateId" />
-                        <input type="submit" value="Xóa" class="btn btn-danger mt-3 px-4" />
+                        <input type="submit" value="Xóa" class="btn btn-danger mt-3 px-4 font-weight-bold" />
                     </form>
                 </div>
             </div>

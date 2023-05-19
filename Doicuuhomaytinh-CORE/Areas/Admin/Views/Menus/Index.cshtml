@@ -13,7 +13,7 @@
         <!-- /.card-header -->
         <div class="card-body">
             <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
-                <table class="table table-bordered table-dark">
+                <table class="table table-bordered table-white">
                     <thead>
                         <tr class="text-center">
                             <th scope="col">MenuID</th>
@@ -48,21 +48,17 @@
                                 <td>@item.Position</td>
                                 <td>
                                     <div class="row align-items-center justify-content-around">
-                                        <a asp-action="Edit" asp-route-id="@item.MenuId" class="col-xl-5 col-12 btn mb-3 mb-xl-0  bg-gradient-info">Chỉnh sửa</a>
+                                        <a asp-action="Edit" asp-route-id="@item.MenuId" class="col-xl-5 col-12 btn mb-3 mb-xl-0  bg-gradient-info font-weight-bold">Chỉnh sửa</a>
                                         <div class="col-xl-2 col-0"></div>
-                                        <a asp-action="Delete" asp-route-id="@item.MenuId" class="col-xl-5 col-12 btn bg-gradient-danger">Xóa</a>
+                                        <a asp-action="Delete" asp-route-id="@item.MenuId" class="col-xl-5 col-12 btn bg-gradient-danger font-weight-bold">Xóa</a>
                                     </div>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
-                <a asp-action="Create" class="btn btn-primary px-4 mt-4 float-right">Thêm mới</a>
-                <div class="jsgrid-pager-container">
-                    <div class="jsgrid-pager">Pages: <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">First</a></span> <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">Prev</a></span> <span class="jsgrid-pager-page jsgrid-pager-current-page">1</span><span class="jsgrid-pager-page"><a href="javascript:void(0);">2</a></span><span class="jsgrid-pager-page"><a href="javascript:void(0);">3</a></span><span class="jsgrid-pager-page"><a href="javascript:void(0);">4</a></span><span class="jsgrid-pager-page"><a href="javascript:void(0);">5</a></span> <span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Next</a></span> <span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Last</a></span> &nbsp;&nbsp; 1 of 5 </div>
-                </div>
-                <div class="jsgrid-load-shader" style="display: none; position: absolute; inset: 0px; z-index: 1000;"></div>
-                <div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...</div>
+                <a asp-action="Create" class="btn btn-primary px-4 mt-4 float-right font-weight-bold">Thêm mới</a>
+                
             </div>
         </div>
         <!-- /.card-body -->

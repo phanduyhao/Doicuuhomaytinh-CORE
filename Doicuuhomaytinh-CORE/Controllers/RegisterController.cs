@@ -1,4 +1,4 @@
-﻿/*using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Doicuuhomaytinh_CORE.Models;
 using Doicuuhomaytinh_CORE.Helpper;
@@ -50,4 +50,3 @@ namespace Doicuuhomaytinh_CORE.Controllers
         }
     }
 }
-*/

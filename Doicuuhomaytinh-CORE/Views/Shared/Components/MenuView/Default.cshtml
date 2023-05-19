@@ -1,27 +1,39 @@
 ﻿@model IList<Menu>
 <ul class="group" id="header-menu-magic-line">
-   
-        @foreach(var menu in Model.Where( m=>m.Levels == 1).OrderBy(n => n.MenuOrder)){
-            var Pid = menu.MenuId;
-            var Smenu = Model.Where(p => p.ParentId == Pid).OrderBy(p => p.MenuOrder).ToList();
-            @if(Smenu.Count == 0)
-            {
-            <li class="text-dark menu-item-has-children ">
-                <a href="index.html">@menu.MenuTitle</a>
-            </li>
-            }
-            else
-            {
+
+    @foreach (var menu in Model.Where(m => m.Levels == 1).OrderBy(n => n.MenuOrder))
+    {
+        var Pid = menu.MenuId;
+        var link = menu.Alias + ".html";
+        var Smenu = Model.Where(p => p.ParentId == Pid).OrderBy(p => p.MenuOrder).ToList();
+        @if (Smenu.Count == 0)
+        {
+
                 <li class="text-dark menu-item-has-children ">
-                    <a href="tabs.html">@menu.MenuTitle</a>
-                    <ul class="sub-menu">
-                        @foreach(var smn in Smenu)
-                        {
-                            <li><a href="tabs.html">@smn.MenuTitle</a></li>
-                        }
-                    </ul>
+                    @if (link == "trang-chu.html")
+                    {
+                        <a href="/">@menu.MenuTitle</a>
+                    }
+                    else
+                    {
+                        <a href="@link">@menu.MenuTitle</a>
+                    }
                 </li>
-            }
+            
         }
+        else
+        {
+            <li class="text-dark menu-item-has-children ">
+                <a href="#">@menu.MenuTitle</a>
+                <ul class="sub-menu">
+                    @foreach (var smn in Smenu)
+                    {
+                        var link2 = smn.Alias + ".html";
+                        <li><a href="@link2">@smn.MenuTitle</a></li>
+                    }
+                </ul>
+            </li>
+        }
+    }
 
 </ul>

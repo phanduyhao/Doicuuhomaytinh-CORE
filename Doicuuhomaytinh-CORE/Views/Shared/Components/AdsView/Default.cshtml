@@ -1,0 +1,13 @@
+﻿@model IList<Advertisement>
+
+<div id=slideset6>
+
+@foreach(var item in Model){
+    <aside class="widget p-0">
+       <a href="@item.Alias" target="_blank">
+            <img src="~/images/Ads/@item.Thumb" alt="@item.Title">
+       </a>
+        <!-- /.newsletter-form -->
+    </aside>
+}
+</div>

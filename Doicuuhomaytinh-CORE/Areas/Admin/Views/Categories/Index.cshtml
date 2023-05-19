@@ -13,7 +13,7 @@
         <!-- /.card-header -->
         <div class="card-body">
             <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
-                <table class="table table-bordered table-dark">
+                <table class="table table-bordered table-white">
                     <thead>
                         <tr class="text-center">
                             <th scope="col">CateID</th>
@@ -41,16 +41,16 @@
                                 <td style="width:400px">@item.Description</td>
                                 <td style="width:360px">
                                     <div class="row align-items-center justify-content-around">
-                                        <a asp-action="Edit" asp-route-id="@item.CateId" class="col-xl-5 col-12 btn mb-3 mb-xl-0  bg-gradient-info">Chỉnh sửa</a>
+                                        <a asp-action="Edit" asp-route-id="@item.CateId" class="col-xl-5 col-12 btn mb-3 mb-xl-0  bg-gradient-info font-weight-bold">Chỉnh sửa</a>
                                         <div class="col-xl-2 col-0"></div>
-                                        <a asp-action="Delete" asp-route-id="@item.CateId" class="col-xl-5 col-12 btn bg-gradient-danger">Xóa</a>
+                                        <a asp-action="Delete" asp-route-id="@item.CateId" class="col-xl-5 col-12 btn bg-gradient-danger font-weight-bold">Xóa</a>
                                     </div>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
-                <a asp-action="Create" class="btn btn-primary px-4 mt-4 float-right">Thêm mới</a>
+                <a asp-action="Create" class="btn btn-primary px-4 mt-4 float-right font-weight-bold">Thêm mới</a>
                 
             </div>
         </div>

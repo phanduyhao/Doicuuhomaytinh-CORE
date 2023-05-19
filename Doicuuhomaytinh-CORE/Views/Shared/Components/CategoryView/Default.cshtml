@@ -1,0 +1,26 @@
+﻿@model IList<Category>
+
+<ul class="tim-isotope-filter tabs-filter-button">
+    <li class="current">
+        <a href="" data-filter="*">Tất cả</a>
+    </li>
+    @foreach (var Category in Model.Where(m => m.Levels == 1).OrderBy(n => n.CateId))
+    {
+        var link = Category.Alias + ".html";
+        int minId = Model.Min(m => m.CateId);
+        <li class="">
+            <a href="" data-filter=".@Category.Alias">@Category.CateName</a>
+        </li>
+
+    }
+</ul>
+
+@*@model IList<Advertisement>
+@foreach(var item in Model){
+    <aside class="widget ">
+       <a href="@item.Alias" target="_blank">
+            <img src="~/images/Ads/@item.Thumb" alt="@item.Title">
+       </a>
+        <!-- /.newsletter-form -->
+    </aside>
+}*@

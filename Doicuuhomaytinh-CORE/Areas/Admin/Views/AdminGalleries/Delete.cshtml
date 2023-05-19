@@ -1,0 +1,39 @@
+﻿@model Doicuuhomaytinh_CORE.Models.Gallery
+
+@{
+    ViewData["Title"] = "Xóa ảnh";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card-body">
+    <div class="card-header">
+        <h3 class="font-weight-bold text-warning">Chấp nhận xóa ảnh này ?</h3>
+    </div>
+    <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+        <table class="table table-bordered table-white">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">ImageID</th>
+                    <th scope="col">Tên ảnh</th>
+                    <th scope="col">Ảnh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center">
+                    <td scope="col">@Model.ImageId</td>
+                    <td>@Model.ImageName</td>
+                    <td>
+                        <img class="img-fluid rounded" width="150" src="~/images/gallery/@Model.ImageName">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex align-items-center justify-content-between">
+            <a asp-action="Index" class="btn px-4 bg-gradient-success mt-4 float-right text-white font-weight-bold">Trở lại</a>
+            <form asp-action="Delete">
+                <input type="submit" value="Xóa" class="btn btn-danger mt-3 px-4 font-weight-bold" />
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -13,7 +13,7 @@
         <!-- /.card-header -->
         <div class="card-body">
             <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
-                <table class="table table-bordered table-dark">
+                <table class="table table-bordered table-white">
                     <thead>
                         <tr class="text-center">
                             <th scope="col">AccountId</th>
@@ -40,9 +40,9 @@
                                 <td> @item.Salt</td>
                                 <td>
                                     <div class="row align-items-center justify-content-around">
-                                        <a asp-action="Edit" asp-route-id="@item.AccountId" class="col-xl-5 col-12 btn mb-3 mb-xl-0  bg-gradient-info">Chỉnh sửa</a>
+                                        <a asp-action="Edit" asp-route-id="@item.AccountId" class="font-weight-bold col-xl-5 col-12 btn mb-3 mb-xl-0  bg-gradient-info">Chỉnh sửa</a>
                                         <div class="col-xl-2 col-0"></div>
-                                        <a asp-action="Delete" asp-route-id="@item.AccountId" class="col-xl-5 col-12 btn bg-gradient-danger">Xóa</a>
+                                        <a asp-action="Delete" asp-route-id="@item.AccountId" class="font-weight-bold col-xl-5 col-12 btn bg-gradient-danger">Xóa</a>
                                     </div>
                                 </td>
                             </tr>
@@ -51,10 +51,7 @@
                     </tbody>
                 </table>
 
-                <a asp-action="Create" class="btn btn-primary px-4 mt-4 float-right">Thêm mới</a>
-
-                <div class="jsgrid-load-shader" style="display: none; position: absolute; inset: 0px; z-index: 1000;"></div>
-                <div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...</div>
+                <a asp-action="Create" class="btn btn-primary px-4 mt-4 float-right font-weight-bold">Thêm mới</a>
             </div>
         </div>
         <!-- /.card-body -->

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Doicuuhomaytinh_CORE.Models;
 using Doicuuhomaytinh_CORE.Helpper;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
 {
@@ -14,10 +15,11 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
     public class MenusController : Controller
     {
         private readonly QuanLyDCHMTContext _context;
-
-        public MenusController(QuanLyDCHMTContext context)
+        public INotyfService _notyfService { get; }
+        public MenusController(QuanLyDCHMTContext context, INotyfService notyfService)
         {
             _context = context;
+            _notyfService = notyfService;
         }
 
         // GET: Admin/Menus
@@ -90,6 +92,7 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
                 menu.Alias = Utilities.SEOUrl(menu.MenuTitle);
                 _context.Add(menu);
                 await _context.SaveChangesAsync();
+                _notyfService.Success("Thêm mới thành công!");
                 return RedirectToAction(nameof(Index));
             }
             return View(menu);
@@ -143,6 +146,8 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
                 {
                     menu.Alias = Utilities.SEOUrl(menu.MenuTitle);
                     _context.Update(menu);
+                    _notyfService.Success("Cập nhật thành công!");
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -207,7 +212,8 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             {
                 _context.Menus.Remove(menu);
             }
-            
+                _notyfService.Success("Xóa thành công!");
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

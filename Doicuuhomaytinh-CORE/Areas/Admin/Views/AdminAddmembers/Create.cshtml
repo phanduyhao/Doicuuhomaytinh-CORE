@@ -1,0 +1,71 @@
+﻿@model Doicuuhomaytinh_CORE.Models.Addmember
+
+@{
+    ViewData["Title"] = "Thêm bài viết";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="font-weight-bold text-success ">Thêm Nội dung</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+                <form asp-area="Admin" asp-controller="AdminAddmembers" asp-action="Create" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <table class="table table-bordered table-white">
+                        <thead>
+                            <tr class="text-center">
+                                <th>NỘI DUNG:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <textarea class="summernote w-100" asp-for="Contents"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex align-items-start mt-3 justify-content-between">
+                        <a asp-action="Index" class="btn px-4 bg-gradient-success float-right text-white font-weight-bold">Trở lại</a>
+
+                        <div class="form-group">
+                            <input type="submit" value="Tạo mới" class="font-weight-bold btn bg-gradient-info px-4" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        jQuery(document).ready(function () {
+            $('.summernote').summernote({
+                fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                height: 700,
+                minHeight: null,
+                maxHeight: null,
+                focus: true
+            });
+        });
+    </script>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

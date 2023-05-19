@@ -1,99 +1,121 @@
 ﻿@model Doicuuhomaytinh_CORE.Models.News
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Thêm bài viết";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="font-weight-bold text-success ">Thêm bài viết</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+                <form asp-area="Admin" asp-controller="AdminNews" asp-action="Create" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <table class="table table-bordered table-white">
+                        <thead>
+                            <tr class="text-center">
+                                <th>Ảnh</th>
+                                <th>Tiêu đề</th>
+                                <th>Trạng thái </th>
+                                <th>IsHot?</th>
+                                <th>IsNewFeed?</th>
+                                <th>Danh mục</th>
+                            </tr>
+                        </thead>
 
-<h1>Create</h1>
+                        <tbody>
+                            <tr class="text-center">
+                                <td style="width:150px">
+                                    <div class="form-group">
+                                        <input name="fThumb" type="file" class="form-control-file" asp-for="Thumb" />
+                                        <span asp-validation-for="Thumb" class="text-danger"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <input type="text" asp-for="Title" class="form-control" />
+                                        <span asp-validation-for="Title" class="text-danger"></span>
+                                    </div>
+                                </td>
+                                <td style="width:100px">
+                                    <div class="form-group">
+                                        <input class="form-check-input" asp-for="Acive" /> @Html.DisplayNameFor(model => model.Acive)
+                                    </div>
+                                </td>
+                                <td style="width:100px">
+                                    <div class="form-group">
+                                        <input class="form-check-input" asp-for="Ishot" /> @Html.DisplayNameFor(model => model.Ishot)
+                                    </div>
+                                </td>
+                                <td style="width:100px">
+                                    <div class="form-group">
+                                        <input class="form-check-input" asp-for="IsNewfeed" /> @Html.DisplayNameFor(model => model.IsNewfeed)
+                                    </div>
+                                </td>
+                                <td style="width:100px">
+                                    <select class="custom-select" asp-for="CateId" style="min-width: 200px;" asp-items="ViewBag.DanhMuc">
+                                        <option value="" selected>Chọn danh mục</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
 
-<h4>News</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+                    </table>
+                    <table class="table table-bordered table-white">
+                        <thead>
+                            <tr class="text-center">
+                                <th>NỘI DUNG:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <textarea class="summernote w-100" asp-for="Contents"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex align-items-start mt-3 justify-content-between">
+                        <a asp-action="Index" class="btn px-4 bg-gradient-success float-right text-white font-weight-bold">Trở lại</a>
+
+                        <div class="form-group">
+                            <input type="submit" value="Tạo mới" class="font-weight-bold btn bg-gradient-info px-4" />
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Contents" class="control-label"></label>
-                <input asp-for="Contents" class="form-control" />
-                <span asp-validation-for="Contents" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Thumb" class="control-label"></label>
-                <input asp-for="Thumb" class="form-control" />
-                <span asp-validation-for="Thumb" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Acive" /> @Html.DisplayNameFor(model => model.Acive)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Metadesc" class="control-label"></label>
-                <input asp-for="Metadesc" class="form-control" />
-                <span asp-validation-for="Metadesc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MetaKey" class="control-label"></label>
-                <input asp-for="MetaKey" class="form-control" />
-                <span asp-validation-for="MetaKey" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Alias" class="control-label"></label>
-                <input asp-for="Alias" class="form-control" />
-                <span asp-validation-for="Alias" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreateDate" class="control-label"></label>
-                <input asp-for="CreateDate" class="form-control" />
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShortContent" class="control-label"></label>
-                <input asp-for="ShortContent" class="form-control" />
-                <span asp-validation-for="ShortContent" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Author" class="control-label"></label>
-                <input asp-for="Author" class="form-control" />
-                <span asp-validation-for="Author" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tags" class="control-label"></label>
-                <input asp-for="Tags" class="form-control" />
-                <span asp-validation-for="Tags" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Ishot" /> @Html.DisplayNameFor(model => model.Ishot)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsNewfeed" /> @Html.DisplayNameFor(model => model.IsNewfeed)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="CateId" class="control-label"></label>
-                <select asp-for="CateId" class ="form-control" asp-items="ViewBag.CateId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="AccountId" class="control-label"></label>
-                <select asp-for="AccountId" class ="form-control" asp-items="ViewBag.AccountId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+          
+        </div>
     </div>
-</div>
+    <script>
+        jQuery(document).ready(function () {
+            $('.summernote').summernote({
+                fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                height: 700,
+                minHeight: null,
+                maxHeight: null,
+                focus: true
+            });
+        });
+    </script>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -405,7 +405,7 @@
   border: 0;
   border-radius: 0.25em;
   background: initial;
-  background-color: #6c757d;
+  background-color: black;
   color: #fff;
   font-size: 1em;
 }
@@ -715,7 +715,7 @@
 }
 .swal2-icon.swal2-question {
   border-color: #a1a8ae;
-  color: #6c757d;
+  color: black;
 }
 .swal2-icon.swal2-success {
   border-color: #28a745;
@@ -1373,7 +1373,7 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
 }
 .swal2-popup.swal2-toast .swal2-title {
   margin: 0;
-  color: #6c757d;
+  color: black;
 }
 .swal2-popup.swal2-toast .swal2-actions {
   flex-basis: 0 !important;

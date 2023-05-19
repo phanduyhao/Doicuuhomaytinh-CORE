@@ -17,6 +17,7 @@ namespace Doicuuhomaytinh_CORE.Models
         }
 
         public virtual DbSet<Account> Accounts { get; set; } = null!;
+        public virtual DbSet<Addmember> Addmembers { get; set; } = null!;
         public virtual DbSet<Advertisement> Advertisements { get; set; } = null!;
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<FeedBack> FeedBacks { get; set; } = null!;
@@ -63,6 +64,13 @@ namespace Doicuuhomaytinh_CORE.Models
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<Addmember>(entity =>
+            {
+                entity.ToTable("Addmember");
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<Advertisement>(entity =>
             {
                 entity.HasKey(e => e.AdsId);
@@ -97,8 +105,6 @@ namespace Doicuuhomaytinh_CORE.Models
             {
                 entity.ToTable("FeedBack");
 
-                entity.Property(e => e.FeedbackId).ValueGeneratedNever();
-
                 entity.Property(e => e.Email).HasMaxLength(255);
 
                 entity.Property(e => e.Fullname).HasMaxLength(255);
@@ -113,6 +119,10 @@ namespace Doicuuhomaytinh_CORE.Models
                 entity.ToTable("Gallery");
 
                 entity.Property(e => e.Image).HasMaxLength(255);
+
+                entity.Property(e => e.ImageName)
+                    .HasMaxLength(250)
+                    .HasColumnName("imageName");
             });
 
             modelBuilder.Entity<Member>(entity =>

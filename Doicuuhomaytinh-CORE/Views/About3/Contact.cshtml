@@ -1,0 +1,104 @@
+﻿@model Doicuuhomaytinh_CORE.Models.FeedBack
+
+@{
+    ViewData["Title"] = "Liên hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+<section class="page-header" style="background-image: url(images/anhchung/lienhe.jpg); padding:11.5% 30px; background-size:contain">
+	<div class="tim-container">
+		<div class="page-header-title text-center ">
+			<h3 class="text-black font-weight-bold font-system">Đến với chúng tôi</h3>
+			<h2 class="text-black font-weight-bold font-system">Liên hệ</h2>
+		</div>
+	</div>
+	<!-- /.tim-container -->
+</section>
+<div class="breadcrumbs mt-4">
+	<a href="/">Trang chủ</a>
+	<span>/</span>
+	<span>Liên hệ</span>
+</div>
+
+<section class="contact-info " style="padding-top:100px">
+	<div class="container-fluid no-pad">
+		<div class="contact-info-inner">
+			<div class="row no-gutters">
+				<div class="col-md-4">
+
+					<div class="email-info sin-cont-info d-flex align-items-center">
+						<div class="center-wrap">
+							<i class="fa-brands fa-facebook"></i>
+							<h3>Facebook</h3>
+							<p>Page 1: <a href="https://www.facebook.com/chmtvinhuni" target="_blank">https://www.facebook.com/chmtvinhuni</a></p>
+							<p>Page 2: <a href="https://www.facebook.com/profile.php?id=100075966206160" target="_blank">https://www.facebook.com/profile.php?id=100075966206160</a></p>
+						</div>
+
+					</div>
+				</div>
+				<!-- /.col-md-4 -->
+				<div class="col-md-4">
+					<div class="office-location sin-cont-info d-flex align-items-center">
+						<div class="center-wrap">
+							<i class="fa fa-map-marker" aria-hidden="true"></i>
+							<h3>Địa điểm hoạt động</h3>
+							<p><u>Địa chỉ:</u> Phòng B2101, tòa nhà B, trường Đại học Vinh, tỉnh Nghệ An</p>
+						</div>
+					</div>
+				</div>
+				<!-- /.col-md-4 -->
+				<div class="col-md-4">
+					<div class="call-us sin-cont-info d-flex align-items-center">
+						<div class="center-wrap">
+							<i class="fa fa-phone" aria-hidden="true"></i>
+							<h3>Hotline</h3>
+							<p>SĐT 1: <a href="tel:0826 232 527">0826 232 527</a></p>
+							<p>SĐT 2: <a href="tel:0855 840 100">0855 840 100</a></p>
+						</div>
+					</div>
+				</div>
+				<!-- /.col-md-4 -->
+
+			</div>
+		</div>
+		<!-- /.contact-info-inner -->
+	</div>
+	<!-- /.container -->
+</section>
+
+<section class="contuct-bottom section-padding">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-10 col-lg-8">
+				<div class="con-bottom-inner">
+					<h4>Liên hệ với chúng tôi</h4>
+					<div class="per-social">
+						<ul>
+							<li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+							<li><a href="#"><i class="fa-brands fa-behance"></i></a></li>
+							<li><a href="#"><i class="fa-brands fa-vimeo"></i></a></li>
+							<li><a href="#"><i class="fa-brands fa-google-plus"></i></a></li>
+							<li><a href="#"><i class="fa-brands fa-pinterest-p"></i></a></li>
+						</ul>
+					</div>
+					<p>Hãy điền đầy đủ các thông tin phía dưới để chúng tôi có thể nhận được phản hồi 1 cách rõ ràng nhất! </p>
+					<form method="post"  asp-action="Contact" class="con-page-form">
+						<textarea asp-for="Contents" required placeholder="Nội dung"></textarea>
+						<input asp-for="Fullname" required type="text" placeholder="Họ tên *" class="mar-r">
+						<input asp-for="Email" required type="text" placeholder="Email *">
+						<input class="font-system font-weight-bold float-none" value="Gửi" type="submit">
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+<div class="">
+	<iframe class="w-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60464.127409970795!2d105.64076228524436!3d18.70846164723123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3139cddf0bf20f23%3A0x86154b56a284fa6d!2sVinh%20University!5e0!3m2!1sen!2s!4v1683299562538!5m2!1sen!2s" height="720" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>

@@ -1,109 +1,91 @@
 ﻿@model Doicuuhomaytinh_CORE.Models.News
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết bài viết";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>News</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Contents)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Contents)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Thumb)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Thumb)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Acive)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Acive)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Metadesc)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Metadesc)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MetaKey)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MetaKey)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Alias)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Alias)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ShortContent)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ShortContent)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Author)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tags)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tags)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ishot)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ishot)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsNewfeed)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsNewfeed)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Account)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Account.AccountId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cate.CateId)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.PostId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="card-body">
+    <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+        <div class="d-flex align-items-start mb-3 justify-content-between">
+            <a asp-action="Edit" asp-route-id="@Model.PostId" class="btn px-4 float-right text-white font-weight-bold bg-gradient-info">Chỉnh sửa</a>
+            <a asp-action="Delete" asp-route-id="@Model.PostId" class="btn px-4 float-right font-weight-bold bg-gradient-danger">Xóa</a>
+        </div>
+        <table class="table table-bordered table-white">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">PostId</th>
+                    <th scope="col">Ảnh</th>
+                    <th scope="col">Tiêu đề</th>
+                    <th scope="col">Trạng thái </th>
+                    <th scope="col">Bài viết Hot? </th>
+                    <th scope="col">Bài NewFeed? </th>
+                    <th scope="col">Danh mục</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr class="text-center">
+                        <td style="width:100px">@Model.PostId</td>
+                        <td>
+                            <img class="img-fluid rounded" width="150" src="~/images/news/@Model.Thumb">
+                        </td>
+                        <td style="width:400px">@Model.Title</td>
+                        <td>
+                            @if (Model.Acive == true)
+                            {
+                                <input type="checkbox" checked>
+                            }
+                            else
+                            {
+                                <input type="checkbox">
+                            }
+                        </td>
+                        <td>
+                            @if (Model.Ishot == true)
+                            {
+                                <input type="checkbox" checked>
+                            }
+                            else
+                            {
+                                <input type="checkbox">
+                            }
+                        </td>
+                        <td>
+                            @if (Model.IsNewfeed == true)
+                            {
+                                <input type="checkbox" checked>
+                            }
+                            else
+                            {
+                                <input type="checkbox">
+                            }
+                        </td>
+                        <td>
+                            @Model.Cate.CateName
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-white mt-4">
+            <thead>
+                <tr class="text-center">
+                    <th>NỘI DUNG:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.Raw(Model.Contents)
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        <div class="d-flex align-items-start mt-3 justify-content-between">
+            <a asp-action="Index" class="btn px-4 bg-gradient-success float-right text-white font-weight-bold">Trở lại</a>
+
+        </div>
+
+    </div>
 </div>

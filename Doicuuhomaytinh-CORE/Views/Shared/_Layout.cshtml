@@ -15,6 +15,7 @@
     <meta name="theme-color" content="#e43a90">
 
     <!-- Dependency Styles -->
+
     <link rel="stylesheet" href="~/dependencies/bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="~/dependencies/intro/css/stylesheet.css" type="text/css">
     <link rel="stylesheet" href="~/dependencies/swiper/swiper.min.css" type="text/css">
@@ -25,21 +26,23 @@
     <link rel="stylesheet" href="~/dependencies/slick-carousel/css/slick.css" type="text/css">
     <link rel="stylesheet" href="~/dependencies/colornip/css/colornip.min.css" type="text/css">
     <link rel="stylesheet" href="~/dependencies/css-loader/css/css-loader.css" type="text/css">
-
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Site Stylesheet -->
     <link rel="stylesheet" href="~/assets/css/woocommerce.css" type="text/css">
     <link rel="stylesheet" href="~/assets/css/app.css" type="text/css">
     <!-- <link id="theme" rel="stylesheet" href="~/assets/css/theme-color/theme-default.css" type="text/css"> -->
     <link href="~/loginAssets/login.css" rel="stylesheet" />
-
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0" nonce="eLEg1Qwi"></script>
 
 
 </head>
 
 <body id="home-version-1" class="home-version-1" data-style="default">
 
-    <div class="loader loader-bar-ping-pong is-active"></div>
-    <div id="site">
+    <div id="">
 
 
 
@@ -51,11 +54,11 @@
                 <div class="tim-container clearfix">
                     <div class="header-magic-line-inner clearfix">
                         <div id="site-logo" class="float-left">
-                            <a href="index.html" class="logo-main">
+                            <a href="/" class="logo-main">
                                 <img src="~/media/logo/logo-CHMT.png" width="85" alt="logo">
                             </a>
 
-                            <a href="index.html" class="logo-stickky">
+                            <a href="/" class="logo-stickky">
                                 <img src="~/media/logo/logo-CHMT.png" width="85" alt="logo">
                             </a>
                         </div>
@@ -75,36 +78,15 @@
 
                             <li>
                                 <a href="javascript:void(0)" class="search-trigger"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                <div class="search-input-wrapper">
-                                    <input class="search-input" placeholder="Search" type="text">
-                                </div>
+                                <form asp-controller="Search" asp-action="Index" method="get" class="search-input-wrapper">
+                                    <input class="search-input" placeholder="Search" name="name" type="text">
+                                    <input type="submit" value="Tìm" />
+                                </form>
                             </li>
                         </ul>
                         <div class="nav">
                             @await Component.InvokeAsync("MenuView")
-                            @*<ul class="group" id="header-menu-magic-line">
-                                <li class="text-dark menu-item-has-children ">
-                                    <a href="index.html">Trang chủ </a>
-                                </li>
-                                <li class="text-dark menu-item-has-children ">
-                                    <a href="index.html">Tổ chức Đội</a>
-                                </li>
-                                <li class="text-dark menu-item-has-children current_page_item">
-                                    <a href="artist.html">Giới thiệu</a>
-                                </li>
-                                <li class="text-dark menu-item-has-children">
-                                    <a href="contact.html">Liên hệ</a>
-                                </li>
-                                <li class="text-dark menu-item-has-children">
-                                    <a href="tabs.html">Blog</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="tabs.html">Sự kiện</a></li>
-                                        <li><a href="tabs-single.html">Thủ thuật công nghệ</a></li>
-                                        <li><a href="tabs-single.html">Cài đặt phần mềm</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="gallery.html">Thư viện</a></li>
-                            </ul>*@
+                          
                         </div>
 
                         <!-- /.nav -->
@@ -142,7 +124,7 @@
 
 
             <div class="offset-social-two">
-                <a href="">
+                <a href="/">
                     <img src="~/media/logo/logo-CHMT.png" width="85" alt="">
                 </a>
                 <ul>
@@ -162,7 +144,7 @@
         <header id="mobile-nav-wrap">
             <div class="mob-header-inner d-flex justify-content-between">
                 <div id="mobile-logo" class="d-flex justify-content-start">
-                    <a href="index.html"><img src="~/assets/img/logo.png" alt="Site Logo"></a>
+                    <a href="/"><img src="~/assets/img/logo.png" alt="Site Logo"></a>
                 </div>
 
                 <ul class="user-link nav justify-content-end">
@@ -188,7 +170,7 @@
             <div class="mobile-nav-top-wrap">
                 <div class="mob-header-inner clearfix">
                     <div class="d-flex justify-content-start mobile-logo">
-                        <a href="index.html">
+                        <a href="/">
                             <img src="~/assets/img/logo-dark.png" alt="Site Logo">
                         </a>
                     </div>
@@ -327,89 +309,56 @@
 
         <footer id="footer-3">
             <div class="container">
-                <div class="d-flex justify-content-center row">
-                    <div class="col-xl-10">
-                        <div class="footer-feed">
-                            <div class="section-title style-four">
-                                <h2>FROM THE FEED</h2>
-                            </div>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <img src="../../~/media/instagram/f1.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../../~/media/instagram/f2.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../../~/media/instagram/f3.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../../~/media/instagram/f4.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../../~/media/instagram/f5.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../../~/media/instagram/f6.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../../~/media/instagram/f7.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../../~/media/instagram/f8.jpg" alt="">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="footer-three-bottom">
-                            <div class="footer-three-left">
-                                <a href="#">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-10">
+                        <div class="row">
+                            <div class=" col-md-4 col-12 mb-7 mb-lg-0">
+                                <a href="/">
                                     <img src="~/media/logo/logo-CHMT.png" width="85" alt="">
                                 </a>
-                                <p>There are many variations of passages of Lorem Ipsum available but the majority. We are proud there are many variations of passages of Lorem Ipsum available but the majority of the users does use this.</p>
-                            </div>
-                            <div class="footer-three-right">
-                                <ul class="footer-three-menu">
-                                    <li><a href="#">Rules</a></li>
-                                    <li><a href="#">Terms of use</a></li>
-                                    <li><a href="#">Tickets</a></li>
-                                    <li><a href="#">policy</a></li>
-                                </ul>
-                                <div class="footer-social-three">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-cloud"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-vine"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-apple"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                                    <ul class="d-flex mt-3">
+                                    <li><a href="#" class="text-white mr-3"><i class="fa-brands fa-facebook"></i></a></li>
+                                    <li><a href="#" class="text-white mr-3"><i class="fa-brands fa-youtube"></i></a></li>
+                                    <li><a href="#" class="text-white mr-3"><i class="fa-brands fa-instagram"></i></a></li>
                                     </ul>
-                                </div>
+                                <p class="text-white d-flex flex-column">
+                                    <span>
+                                        <i class="fa fa-phone mr-3"></i>
+                                        +84 826 232 527
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-envelope mr-3"></i>
+                                        CuuhomaytinhVinhuni@gmail.com
+                                    </span>
+                                    <span>
+                                        <i class="fa-solid fa-location-dot mr-3"></i>
+                                        Phòng B2101 Trường Đại học Vinh, Nghệ An.
+                                    </span>
+                                </p>
                             </div>
-
+                            <div class=" col-md-4  col-12 mb-7 mb-lg-0 text-right">
+                                <h3 class="fs-20 mb-3 text-white">Nội dung chính</h3>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="pb-1"><a href="tuyen-thanh-vien.html" class="text-white">Tuyển thành viên</a></li>
+                                    <li class="py-1"><a href="tin-tuc.html" data-filter=".cai-dat-phan-mem" class="text-white">Sự kiện</a></li>
+                                    <li class="py-1"><a href="tin-tuc.html" class="text-white">Cài đặt phần mềm</a></li>
+                                    <li class="pt-1"><a href="tin-tuc.html" class="text-white">Thủ thuật máy tính</a></li>
+                                </ul>
+                            </div>
+                            <div class=" col-md-4 col-12 mb-7 mb-lg-0 text-right">
+                                <h3 class="fs-20 mb-3 text-white">Thông tin</h3>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="pb-1"><a href="gioi-thieu.html" class="text-white">Giới thiệu</a></li>
+                                    <li class="py-1"><a href="lien-he.html" class="text-white">Liên hệ</a></li>
+                                    <li class="py-1"><a href="thu-vien.html" class="text-white">Thư viện ảnh</a></li>
+                                    <li class="py-1"><a href="#" class="text-white">Thành viên đội</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <!-- /.col-xl- -->
+                   
                 </div>
+
                 <!-- /.row -->
             </div>
             <!-- /.container -->

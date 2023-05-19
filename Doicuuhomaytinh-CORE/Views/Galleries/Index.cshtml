@@ -1,0 +1,96 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<Doicuuhomaytinh_CORE.Models.Gallery>
+@{
+    ViewData["Title"] = "Thư viện ảnh";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int PageCurrent = ViewBag.CurrentPage;
+    int PageNext = PageCurrent + 1;
+}
+
+<section class="page-header position-relative animate__animated animate__zoomIn" data-bg-image="/images/gallery/bia-gallery.jpg" style="padding-top:10% !important; margin-top:90px !important;background-size: contain !important;">
+    <div class="overlay-news-details" style="background: #00000066;"></div>
+    <div class="tim-container position-relative">
+        <div class="page-header-title text-white text-center " >
+            <h3 class="font-system font-weight-bold animate__animated animate__jackInTheBox animate__slow">Đội cứu hộ máy tính Vinhuni</h3>
+            <span>-</span>
+            <h2 class="font-system font-weight-bold animate__animated animate__jackInTheBox animate__slow"> Lưu giữ những khoảnh khắc</h2>
+        </div>
+    </div>
+    <!-- /.tim-container -->
+</section>
+<div class="breadcrumbs mt-4">
+    <a href="/">Trang chủ</a>
+    <span>/</span>
+    <span>Thư viện ảnh</span>
+</div>
+<div class="pagination-area py-5">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            @if (PageCurrent > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/thu-vien.html?page=@(PageCurrent - 1)" aria-label="Previous">
+                        <span class="fa fa-chevron-left"></span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/thu-vien.html" aria-label="Previous">
+                        <span class="fa fa-chevron-left"></span>
+                    </a>
+                </li>
+            }
+
+            <li class="page-item active"><a class="page-link" href="/thu-vien.html?page=@PageCurrent">@PageCurrent</a></li>
+            <li class="page-item"><a class="page-link" href="/thu-vien.html?page=@PageNext">@PageNext</a></li>
+            <li class="page-item">
+                <a class="page-link" href="/thu-vien.html?page=@PageNext" aria-label`="Next">
+                    <span class="fa fa-chevron-right"></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div id="gallery" class="container">
+    @foreach(var item in Model)
+    {
+        <img src="/images/gallery/@item.ImageName" class="gallery-hover img-responsive rounded animate__animated animate__fadeInUp" data-toggle="modal" data-target="#@item.ImageName" />
+        <div class="modal fade" id="@item.ImageName">
+            <div class="modal-dialog h-100 d-flex align-items-center" role="document">
+                    <img src="/images/gallery/@item.ImageName"  style="scale:1.8" />
+            </div>
+        </div>
+    }
+</div>
+<div class="pagination-area py-5">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            @if (PageCurrent > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/thu-vien.html?page=@(PageCurrent - 1)" aria-label="Previous">
+                        <span class="fa fa-chevron-left"></span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/thu-vien.html" aria-label="Previous">
+                        <span class="fa fa-chevron-left"></span>
+                    </a>
+                </li>
+            }
+
+            <li class="page-item active"><a class="page-link" href="/thu-vien.html?page=@PageCurrent">@PageCurrent</a></li>
+            <li class="page-item"><a class="page-link" href="/thu-vien.html?page=@PageNext">@PageNext</a></li>
+            <li class="page-item">
+                <a class="page-link" href="/thu-vien.html?page=@PageNext" aria-label`="Next">
+                    <span class="fa fa-chevron-right"></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

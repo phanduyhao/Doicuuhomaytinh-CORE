@@ -1,0 +1,80 @@
+﻿@model Doicuuhomaytinh_CORE.Models.Gallery
+
+@{
+    ViewData["Title"] = "Thêm Ảnh ";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="font-weight-bold text-success ">Thêm Ảnh</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+                <form asp-area="Admin" asp-controller="AdminGalleries" asp-action="Edit" asp-route-id="@Model.ImageId"  method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ImageId" />
+                    <input type="hidden" asp-for="Image" />
+                    <table class="table table-bordered table-white">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">Ảnh</th>
+                                <th scope="col">Tên ảnh</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="text-center">
+                                <td style="width:150px">
+                                    <div class="form-group">
+                                        <input name="fThumb" type="file" class="form-control-file" asp-for="Image" />
+                                        <span asp-validation-for="Image" class="text-danger"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <input type="text" asp-for="ImageName" class="form-control" />
+                                        <span asp-validation-for="ImageName" class="text-danger"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row align-items-center justify-content-around">
+
+                                        <div class="form-group col-xl-5 col-12 btn mb-3 mb-xl-0 p-0">
+                                            <input type="submit" value="Lưu thay đổi" class="btn btn-primary font-weight-bold" />
+                                        </div>
+                                        <div class="col-xl-2 col-0"></div>
+
+                                        <a asp-action="Delete" asp-route-id="@Model.ImageId" class="col-xl-3 col-12 btn bg-gradient-danger font-weight-bold">Xóa</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex align-items-start mt-3 justify-content-between">
+                        <a asp-action="Index" class="btn px-4 bg-gradient-success float-right text-white font-weight-bold">Trở lại</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

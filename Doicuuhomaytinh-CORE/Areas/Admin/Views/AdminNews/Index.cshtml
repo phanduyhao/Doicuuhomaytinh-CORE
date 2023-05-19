@@ -1,120 +1,89 @@
 ﻿@model IEnumerable<Doicuuhomaytinh_CORE.Models.News>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Quản lý Bài viết";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Index</h1>
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="font-weight-bold text-success ">Quản lý Bài viết</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+                <a asp-action="Create" class="btn btn-primary px-4 mb-4 float-right font-weight-bold">Thêm mới</a>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contents)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Thumb)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Acive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Metadesc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MetaKey)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Alias)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ShortContent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tags)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ishot)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsNewfeed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Account)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contents)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Thumb)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Acive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Metadesc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MetaKey)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Alias)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShortContent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tags)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ishot)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsNewfeed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Account.AccountId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cate.CateId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PostId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PostId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <table class="table table-bordered table-white">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">PostId</th>
+                            <th scope="col">Ảnh</th>
+                            <th scope="col">Tiêu đề</th>
+                            <th scope="col">Trạng thái </th>
+                            <th scope="col">Bài viết Hot? </th>
+                            <th scope="col">Bài NewFeed? </th>
+                            <th scope="col">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="text-center">
+                                <td style="width:100px">@item.PostId</td>
+                                <td>
+                                    <img class="img-fluid rounded" width="150" src="~/images/news/@item.Thumb">
+                                </td>
+                                <td style="width:400px">@item.Title</td>
+                                <td>
+                                    @if (item.Acive == true)
+                                    {
+                                        <input type="checkbox" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox">
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.Ishot == true)
+                                    {
+                                        <input type="checkbox" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox">
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.IsNewfeed == true)
+                                    {
+                                        <input type="checkbox" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox">
+                                    }
+                                </td>
+                                <td style="width:360px">
+                                    <div class="row align-items-center justify-content-around">
+                                        <a asp-action="Edit" asp-route-id="@item.PostId" class="font-weight-bold col-xl-4 col-12 btn mb-3 mb-xl-0  bg-gradient-info">Chỉnh sửa</a>
+                                        <a asp-action="Details" asp-route-id="@item.PostId" class="font-weight-bold col-xl-3 col-12 btn mb-3 mb-xl-0  bg-gradient-success">Chi tiết</a>
+                                        <a asp-action="Delete" asp-route-id="@item.PostId" class="font-weight-bold col-xl-4 col-12 btn bg-gradient-danger">Xóa</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
+@*
+
+*@

@@ -23,7 +23,7 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
         public CategoriesController(QuanLyDCHMTContext context, INotyfService notyfService)
         {
             _context = context;
-            _notyfService = notyfService;   
+            _notyfService = notyfService;
         }
 
         // GET: Admin/Categories
@@ -37,7 +37,7 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             var taikhoanID = HttpContext.Session.GetString("AccountId");
             if (taikhoanID == null)
                 return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
-            return _context.Categories != null ? 
+            return _context.Categories != null ?
                           View(await _context.Categories.ToListAsync()) :
                           Problem("Entity set 'QuanLyDCHMTContext.Categories'  is null.");
         }
@@ -100,6 +100,7 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
                 if (string.IsNullOrEmpty(category.Thumb)) category.Thumb = "default.jpg";
                 category.Alias = Utilities.SEOUrl(category.CateName);
                 _context.Add(category);
+                _notyfService.Success("Thêm mới thành công");
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -109,6 +110,13 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
         // GET: Admin/Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
+            }
+            var taikhoanID = HttpContext.Session.GetString("AccountId");
+            if (taikhoanID == null)
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
             if (id == null || _context.Categories == null)
             {
                 return NotFound();
@@ -129,6 +137,13 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CateId,CateName,Alias,Thumb,Active,Ordering,Parent,Levels,Description")] Category category, Microsoft.AspNetCore.Http.IFormFile fThumb)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
+            }
+            var taikhoanID = HttpContext.Session.GetString("AccountId");
+            if (taikhoanID == null)
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
             if (id != category.CateId)
             {
                 return NotFound();
@@ -169,6 +184,13 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
         // GET: Admin/Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
+            }
+            var taikhoanID = HttpContext.Session.GetString("AccountId");
+            if (taikhoanID == null)
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
             if (id == null || _context.Categories == null)
             {
                 return NotFound();
@@ -189,6 +211,13 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
+            }
+            var taikhoanID = HttpContext.Session.GetString("AccountId");
+            if (taikhoanID == null)
+                return RedirectToAction("Login", "AccountLogin", new { Area = "Admin" });
             if (_context.Categories == null)
             {
                 return Problem("Entity set 'QuanLyDCHMTContext.Categories'  is null.");
@@ -198,14 +227,16 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             {
                 _context.Categories.Remove(category);
             }
-            
+
+            _notyfService.Success("Xóa thành công");
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoryExists(int id)
         {
-          return (_context.Categories?.Any(e => e.CateId == id)).GetValueOrDefault();
+            return (_context.Categories?.Any(e => e.CateId == id)).GetValueOrDefault();
         }
     }
 }

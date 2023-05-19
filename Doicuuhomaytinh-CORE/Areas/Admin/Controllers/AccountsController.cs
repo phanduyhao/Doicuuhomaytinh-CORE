@@ -12,18 +12,21 @@ using System.Security.Claims;
 using Doicuuhomaytinh_CORE.Helpper;
 using Doicuuhomaytinh_CORE.Extension;
 using System.Security.Principal;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AccountsController : Controller
     {
+        public INotyfService _notyfService { get; }
 
         private readonly QuanLyDCHMTContext _context;
 
-        public AccountsController(QuanLyDCHMTContext context)
+        public AccountsController(QuanLyDCHMTContext context, INotyfService notyfService)
         {
             _context = context;
+            _notyfService = notyfService;
 
         }
 
@@ -106,10 +109,11 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
                 if (account.RoleId == 2)
                     account.RoleName = "Staff";
                 _context.Add(account);
+                _notyfService.Success("Thêm mới thành công");
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PhanQuyen"] = new SelectList(_context.Accounts, "RoleId", "RoleName",account.RoleId);
+            ViewData["PhanQuyen"] = new SelectList(_context.Accounts, "RoleId", "RoleName", account.RoleId);
             return View(account);
         }
 
@@ -156,7 +160,7 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-     
+
             if (ModelState.IsValid)
             {
                 try
@@ -175,15 +179,14 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
                         account.Password = pass;
                         account.Salt = salt;
                     }
-                    /*  string salt = Utilities.GetRandomKey();
-                      account.Password = (account.Password + salt.Trim()).ToMD5();
-                      account.Salt = salt;*/
                     account.CreateDate = DateTime.Now;
                     if (account.RoleId == 1)
                         account.RoleName = "Admin";
                     if (account.RoleId == 2)
                         account.RoleName = "Staff";
                     _context.Update(account);
+                    _notyfService.Success("Cập nhật thành công");
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -199,7 +202,7 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-          
+
             ViewData["PhanQuyen"] = new SelectList(_context.Accounts, "RoleId", "RoleName", account.RoleId);
             return View(account);
         }
@@ -250,14 +253,15 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             {
                 _context.Accounts.Remove(account);
             }
-            
+            _notyfService.Success("Xóa thành công");
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AccountExists(int id)
         {
-          return _context.Accounts.Any(e => e.AccountId == id);
+            return _context.Accounts.Any(e => e.AccountId == id);
         }
     }
 }

@@ -6,17 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Doicuuhomaytinh_CORE.Models;
+using Doicuuhomaytinh_CORE.Helpper;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AdminNewsController : Controller
     {
+        public INotyfService _notyfService { get; }
+
         private readonly QuanLyDCHMTContext _context;
 
-        public AdminNewsController(QuanLyDCHMTContext context)
+        public AdminNewsController(QuanLyDCHMTContext context, INotyfService notyfService)
         {
             _context = context;
+            _notyfService = notyfService;
         }
 
         // GET: Admin/AdminNews
@@ -29,6 +34,7 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
         // GET: Admin/AdminNews/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+           
             if (id == null || _context.News == null)
             {
                 return NotFound();
@@ -49,8 +55,9 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
         // GET: Admin/AdminNews/Create
         public IActionResult Create()
         {
+            
             ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "AccountId");
-            ViewData["CateId"] = new SelectList(_context.Categories, "CateId", "CateId");
+            ViewData["DanhMuc"] = new SelectList(_context.Categories, "CateId", "CateName");
             return View();
         }
 
@@ -59,16 +66,31 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostId,Title,Contents,Thumb,Acive,Metadesc,MetaKey,Alias,CreateDate,ShortContent,Author,Tags,Ishot,IsNewfeed,CateId,AccountId")] News news)
+        public async Task<IActionResult> Create([Bind("PostId,Title,Contents,Thumb,Acive,Metadesc,MetaKey,Alias,CreateDate,ShortContent,Author,Tags,Ishot,IsNewfeed,CateId,AccountId")] News news, Microsoft.AspNetCore.Http.IFormFile fThumb)
         {
             if (ModelState.IsValid)
             {
+                 if (fThumb != null)
+                {
+                    string extension = Path.GetExtension(fThumb.FileName);
+                    string imageName = Utilities.SEOUrl(news.Title) + extension;
+                    news.Thumb = await Utilities.UploadFile(fThumb, @"news", imageName.ToLower());
+                }
+                if (string.IsNullOrEmpty(news.Thumb)) news.Thumb = "default.jpg";
+                news.Alias = Utilities.SEOUrl(news.Title);
+                news.CreateDate = DateTime.Now;
                 _context.Add(news);
+                _notyfService.Success("Thêm mới thành công");
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            var quanLyDCHMTContext = _context.News
+               .AsNoTracking()
+               .Include(p => p.Cate)
+               .OrderByDescending(p => p.PostId);
             ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "AccountId", news.AccountId);
-            ViewData["CateId"] = new SelectList(_context.Categories, "CateId", "CateId", news.CateId);
+            ViewData["DanhMuc"] = new SelectList(_context.Categories, "CateId", "CateName", news.CateId);
             return View(news);
         }
 
@@ -86,7 +108,7 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "AccountId", news.AccountId);
-            ViewData["CateId"] = new SelectList(_context.Categories, "CateId", "CateId", news.CateId);
+            ViewData["DanhMuc"] = new SelectList(_context.Categories, "CateId", "CateName", news.CateId);
             return View(news);
         }
 
@@ -95,18 +117,28 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PostId,Title,Contents,Thumb,Acive,Metadesc,MetaKey,Alias,CreateDate,ShortContent,Author,Tags,Ishot,IsNewfeed,CateId,AccountId")] News news)
+        public async Task<IActionResult> Edit(int id, [Bind("PostId,Title,Contents,Thumb,Acive,Metadesc,MetaKey,Alias,CreateDate,ShortContent,Author,Tags,Ishot,IsNewfeed,CateId,AccountId")] News news, Microsoft.AspNetCore.Http.IFormFile fThumb)
         {
             if (id != news.PostId)
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
                 {
+                    if (fThumb != null)
+                    {
+                        string extension = Path.GetExtension(fThumb.FileName);
+                        string imageName = Utilities.SEOUrl(news.Title) + extension;
+                        news.Thumb = await Utilities.UploadFile(fThumb, @"news", imageName.ToLower());
+                    }
+                    if (string.IsNullOrEmpty(news.Thumb)) news.Thumb = "default.jpg";
+                    news.Alias = Utilities.SEOUrl(news.Title);
+                    news.CreateDate = DateTime.Now;
                     _context.Update(news);
+                    _notyfService.Success("Cập nhật thành công");
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -123,13 +155,14 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "AccountId", news.AccountId);
-            ViewData["CateId"] = new SelectList(_context.Categories, "CateId", "CateId", news.CateId);
+            ViewData["DanhMuc"] = new SelectList(_context.Categories, "CateId", "CateName", news.CateId);
             return View(news);
         }
 
         // GET: Admin/AdminNews/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+          
             if (id == null || _context.News == null)
             {
                 return NotFound();
@@ -161,7 +194,8 @@ namespace Doicuuhomaytinh_CORE.Areas.Admin.Controllers
             {
                 _context.News.Remove(news);
             }
-            
+                _notyfService.Success("Xóa thành công");
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -7,5 +7,6 @@ namespace Doicuuhomaytinh_CORE.Models
     {
         public int ImageId { get; set; }
         public string? Image { get; set; }
+        public string? ImageName { get; set; }
     }
 }

@@ -23,6 +23,8 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="wwwroot\images\category\" />
+    <Folder Include="wwwroot\images\Ads\" />
+    <Folder Include="wwwroot\images\news\" />
   </ItemGroup>
 
 </Project>

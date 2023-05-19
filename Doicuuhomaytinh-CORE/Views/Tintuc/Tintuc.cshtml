@@ -1,0 +1,162 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<Doicuuhomaytinh_CORE.Models.News>
+@{
+    ViewData["Title"] = "Tin tức  - Trang " + ViewBag.CurrentPage;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int PageCurrent = ViewBag.CurrentPage;
+    int PageNext = PageCurrent + 1;
+    List<News> Baivietlienquan = ViewBag.Baivietlienquan;
+
+}
+
+<section class="page-header mx-auto animate__animated animate__zoomIn" style="background-image: url(images/anhchung/blog.jpeg);">
+    <!-- /.tim-container -->
+    <div class="overlay-news-details" style="background: linear-gradient(180deg, #4a4a4a8a, black);"></div>
+
+    <div class="tim-container position-relative">
+        <div class="page-header-title text-white text-center " style="margin-top:-15%">
+            <h3 class="font-system font-weight-bold  text-white  animate__animated animate__jackInTheBox animate__slow">Đội cứu hộ máy tính Vinhuni</h3>
+            <span>-</span>
+            <h2 class="font-system font-weight-bold  text-white  animate__animated animate__jackInTheBox animate__slow">TIN TỨC</h2>
+        </div>
+    </div>
+</section>
+<div class="breadcrumbs mt-4">
+    <a href="/">Trang chủ</a>
+    <span>/</span>
+    <span>@ViewBag.Title</span>
+</div>
+
+<section class="blog-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8">
+                <div class="tab-filter-wraper">
+
+                    @await Component.InvokeAsync("CategoryView")
+
+                    <div class="tim-isotope tim-isotope-3">
+                        <div class="tim-filter-items tabs-filter grid row">
+                            @foreach (var post in Model)
+                            {
+                                string link2 =  $"/tin-tuc/{post.Alias}-{post.PostId}.html"; ;
+
+                                <div class="grid-sizer"></div>
+                                <div class=" grid-item col-lg-4 col-md-6 col-sm-6 col-full-width @post.Cate.Alias">
+                                    <div class="animate__animated animate__fadeInUp ">
+                                        <article class="blog-post blog-grid">
+
+                                            <div class="entry-image-wrapper">
+
+                                                <figure class=" post-thumbnail">
+                                                    <a class="hover-shine-contain img-favo-contain position-relative overflow-hidden" href="@link2">
+                                                        <img class="img-favorite img-fluid" src="~/images/news/@post.Thumb" alt="@post.Title" >
+                                                    </a>
+                                                </figure>
+                                                <!-- .post-thumbnail -->
+
+                                            </div>
+                                            <!-- .entry-image-wrapper -->
+                                            <div class="entry-content-wrapper d-flex flex-column justify-content-between text-center">
+
+                                                <div class="entry-meta entry-meta-footer">
+                                                    <ul class="meta">
+                                                        <li>
+                                                            <span class="author">
+                                                                By
+                                                                <span>
+                                                                    <a href="#">Admin</a>
+                                                                </span>
+                                                            </span>
+                                                        </li>
+
+                                                        <li>
+                                                            <span class="category">
+                                                                -
+                                                                <span>
+                                                                    <a href="#">
+                                                                        <span>@post.Cate.CateName</span>
+                                                                    </a>
+                                                                </span>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <!-- .entry-meta -->
+
+                                                <header class="entry-header">
+                                                    <h1 class="entry-title">
+                                                        <a href="@link2" rel="bookmark">@post.Title</a>
+                                                    </h1>
+                                                </header>
+                                                <!-- .entry-header -->
+
+                                                <div class="entry-content">
+                                                    <p>
+                                                        @post.ShortContent
+                                                    </p>
+                                                </div>
+                                                <!-- /.entry-content -->
+
+                                                <a href="@link2" class="tim-btn tim-btn-bgt read-more-btn">Xem thêm</a>
+                                            </div>
+                                            <!-- .entry-content-wrapper -->
+                                        </article>
+                                    </div>
+                                </div>
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="sitebar">
+                    <aside class="widget widget_popular_entries">
+                        <h2 class="widget-title">Bài viết mới nhất</h2>
+                        <ul class="widgets-popular-post">
+                            @if (Baivietlienquan != null && Baivietlienquan.Count() > 0)
+                            {
+                                foreach (var item in Baivietlienquan)
+                                {
+                                    string _url = $"/tin-tuc/{item.Alias}-{item.PostId}.html";
+
+                                    <li class="clearfix">
+                                        <div class="content">
+                                            <h5><a href="@_url">@item.Title</a></h5>
+                                            <span class="entry-meta post-date">
+                                                <a href="@_url">@item.CreateDate</a>
+                                            </span>
+
+                                        </div>
+
+                                        <a href="@_url" class="feature-img"><img src="~/images/news/@item.Thumb" alt="@item.Title"></a>
+                                    </li>
+                                }
+
+                            }
+                        </ul>
+                    </aside>
+                    @await Component.InvokeAsync("AdsView")
+
+                    <aside class="widget ">
+                        <div class="fb-page" data-href="https://www.facebook.com/chmtvinhuni" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/chmtvinhuni" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/chmtvinhuni">Đội Cứu Hộ Máy Tính VinhUni</a></blockquote></div>
+
+                    </aside>
+                    <aside class="widget ">
+                        <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=100075966206160" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/chmtvinhuni" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/chmtvinhuni">Đội Cứu Hộ Máy Tính VinhUni</a></blockquote></div>
+
+                    </aside>
+                </div>
+                <!-- /.site-sitebar -->
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
+

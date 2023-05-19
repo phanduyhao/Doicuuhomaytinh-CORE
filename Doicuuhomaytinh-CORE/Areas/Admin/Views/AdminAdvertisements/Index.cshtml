@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Doicuuhomaytinh_CORE.Models.Advertisement>
+
+@{
+    ViewData["Title"] = "Quản lý quảng cáo";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="font-weight-bold text-success ">Quản lý Quảng cáo</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+                <a asp-action="Create" class="btn btn-primary px-4 mt-4 float-right font-weight-bold mb-4">Thêm mới</a>
+
+                <table class="table table-bordered table-white">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">AdsId</th>
+                            <th scope="col">Ảnh</th>
+                            <th scope="col">Tiêu đề</th>
+                            <th scope="col">Link</th>
+                            <th scope="col">Quảng cáo Hot? </th>
+                            <th scope="col">Quảng cáo NewFeed? </th>
+                            <th scope="col">Trạng thái </th>
+                            <th scope="col">Tác vụ</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="text-center">
+                                <td scope="col">@item.AdsId</td>
+                                <td>
+                                    <img class="img-fluid rounded" width="150" src="~/images/Ads/@item.Thumb">
+                                </td>
+                                <td>@item.Title</td>
+                                <td>@item.Alias</td>
+                               
+                                <td>
+                                    @if (item.Ishot == true)
+                                    {
+                                        <input type="checkbox" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox">
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.IsNewfeed == true)
+                                    {
+                                        <input type="checkbox" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox">
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.Active == true)
+                                    {
+                                        <input type="checkbox" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox">
+                                    }
+                                </td>
+                                <td style="width:360px">
+                                    <div class="row align-items-center justify-content-around">
+                                        <a asp-action="Edit" asp-route-id="@item.AdsId" class="font-weight-bold col-xl-5 col-12 btn mb-3 mb-xl-0  bg-gradient-info">Chỉnh sửa</a>
+                                        <div class="col-xl-2 col-0"></div>
+                                        <a asp-action="Delete" asp-route-id="@item.AdsId" class="font-weight-bold col-xl-5 col-12 btn bg-gradient-danger">Xóa</a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Doicuuhomaytinh_CORE.Models.FeedBack>
+
+@{
+    ViewData["Title"] = "Quản lý phản hồi";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="font-weight-bold text-success ">Quản lý phản hồi</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+                <table class="table table-bordered table-white">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col" style="width:150px">FeedBackID</th>
+                            <th scope="col" style="width:300px">Họ và tên</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Nội dung</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col" style="width:350px">Tác vụ</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="text-center">
+                                <td scope="col">@item.FeedbackId</td>
+                                <td>@item.Fullname</td>
+                                <td>@item.Email</td>
+                                <td style="white-space: nowrap; overflow: hidden;  text-overflow: ellipsis; max-width: 400px;"> @item.Contents</td>
+                                @if (item.Active == true)
+                                {
+                                    <td>
+                                        <i class="fa-solid fa-circle-check" style="color:lawngreen"></i> <span> Đã đọc</span>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                        <span> Chưa đọc</span>
+                                    </td>
+                                }
+                                <td>
+                                    <div class="row align-items-center justify-content-around">
+                                        <a asp-action="Edit" asp-route-id="@item.FeedbackId" class="font-weight-bold col-xl-5 col-12 btn mb-3 mb-xl-0  bg-gradient-info">Chi tiết</a>
+                                        <div class="col-xl-2 col-0"></div>
+                                        <a asp-action="Delete" asp-route-id="@item.FeedbackId" class="font-weight-bold col-xl-5 col-12 btn bg-gradient-danger">Xóa</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>

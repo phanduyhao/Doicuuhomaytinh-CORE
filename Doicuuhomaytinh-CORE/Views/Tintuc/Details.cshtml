@@ -1,0 +1,149 @@
+﻿@model Doicuuhomaytinh_CORE.Models.News
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string url = $"/tin-tuc/{Model.Alias}-{Model.PostId}.html";
+    List<News> Baivietlienquan = ViewBag.Baivietlienquan;
+
+}
+@*<section class="page-header mx-auto" style="background-image: url(/images/news/@Model.Thumb);">
+*@
+
+<div class="bg-news-details position-relative" style="background-image: url(/images/news/@Model.Thumb);">
+    @*<img class="img-fluid w-100 " src="/images/news/@Model.Thumb" />*@
+    <div class="overlay-news-details"></div>
+    <div class="page-header-title text-center position-absolute text-white" style="max-width:1200px; ">
+        <h1 class="font-weight-bold text-white font-system">@Model.Title</h1>
+        <span>-</span>
+        <h3>@Model.CreateDate</h3>
+
+    </div>
+</div>
+
+<!-- /.tim-container -->
+@*</section>
+*@<div class="breadcrumbs mt-4">
+    <a href="/">Trang chủ</a>
+    <span>/</span>
+    <a href="/tin-tuc.html">Tin tức</a>
+    <span>/</span>
+    <span>@ViewBag.Title</span>
+</div>
+<section class="blog-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8">
+                <article class="blog-post-list mb-0">
+                    <!-- .post-thumbnail -->
+
+                    <div class="entry-content-wrapper">
+                        @await Component.InvokeAsync("AdsView")
+
+                        <div class="entry-meta entry-meta-footer">
+                            <ul class="meta">
+                                <li>
+                                    <span class="author">
+                                        By
+                                        <span>
+                                            <a href="#">Admin</a>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- .entry-meta -->
+
+                        <header class="entry-header hide-topbar">
+                            <h1 class="entry-title">
+                                @Model.Title
+                            </h1>
+                        </header>
+                        <!-- .entry-header -->
+
+                        <div class="entry-content">
+                            @Html.Raw(Model.Contents)
+                        </div>
+                        <!-- /.entry-content -->
+
+                    </div>
+                    <!-- .entry-content-wrapper -->
+
+                </article>
+
+
+                <!-- /.comments-area -->
+            </div>
+            <!-- /.col-lg-8 -->
+
+            <div class="col-lg-3 col-md-4">
+                <div style="
+    position: sticky;
+    top: 2rem;
+">
+                    <aside class="widget widget_popular_entries">
+                        <h2 class="widget-title">Bài viết liên quan</h2>
+                        <ul class="widgets-popular-post">
+                            @if (Baivietlienquan != null && Baivietlienquan.Count() > 0)
+                            {
+                                foreach (var item in Baivietlienquan)
+                                {
+                                    string _url = $"/tin-tuc/{item.Alias}-{item.PostId}.html";
+
+                                    <li class="clearfix">
+                                        <div class="content">
+                                            <h5><a href="@_url" style="font-size:14px">@item.Title</a></h5>
+                                            <span class="entry-meta post-date">
+                                                <a href="@_url" style="font-size:14px">@item.CreateDate</a>
+                                            </span>
+
+                                        </div>
+
+                                        <a href="@_url" class="feature-img"><img src="~/images/news/@item.Thumb" alt="@item.Title"></a>
+                                    </li>
+                                }
+
+                            }
+                        </ul>
+                    </aside>
+                    @await Component.InvokeAsync("AdsView")
+                    <aside class="widget ">
+                        <div class="fb-page" data-href="https://www.facebook.com/chmtvinhuni" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/chmtvinhuni" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/chmtvinhuni">Đội Cứu Hộ Máy Tính VinhUni</a></blockquote></div>
+
+                    </aside>
+                    <aside class="widget ">
+                        <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=100075966206160" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/chmtvinhuni" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/chmtvinhuni">Đội Cứu Hộ Máy Tính VinhUni</a></blockquote></div>
+
+                    </aside>
+
+                </div>
+                <!-- /.site-sitebar -->
+            </div>
+            <!-- /.col-lg-3 -->
+        </div>
+
+    </div>
+    <div class="container pt-5 border-top">
+        <h2 class="text-center">Bài viết liên quan</h2>
+        <div class="row  entry-content-wrapper">
+            @if (Baivietlienquan != null && Baivietlienquan.Count() > 0)
+            {
+                foreach (var item in Baivietlienquan)
+                {
+                    string _url = $"/tin-tuc/{item.Alias}-{item.PostId}.html";
+
+                    <div class="col-3 ">
+                        <div class=" post-home" style="width: 18rem;">
+                            <a href="@_url"><img class="card-img-top img-new-home img-fluid" src="~/images/news/@item.Thumb" alt="@item.Title"></a>
+                            <div class="card-body">
+                                <h5><a class="text-dark" href="@_url">@item.Title</a></h5>
+                                <span class="entry-meta post-date">
+                                    <a class="text-dark" href="@_url">@item.CreateDate</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,86 @@
+﻿@model Doicuuhomaytinh_CORE.Models.FeedBack
+
+@{
+    ViewData["Title"] = "Chi tiết phản hồi";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="font-weight-bold text-success ">Chi tiết phản hồi</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="" class="jsgrid" style="">
+                <form asp-area="Admin" asp-controller="AdminFeedBack" asp-action="Edit" asp-route-id="@Model.FeedbackId" method="post" enctype="multipart/form-data">
+                    <div class="d-flex align-items-start mt-3 justify-content-between">
+                        <a asp-action="Index" class="btn px-4 bg-gradient-success float-right text-white font-weight-bold">Trở lại</a>
+                       
+                            @if (Model.Active == true)
+                            {
+                                
+                            }
+                            else
+                            {
+                            <div class="form-group d-flex align-items-center">
+                                <input class="form-check-input" asp-for="Active" style="scale:2.5"/>
+                                <input type="submit" value="Đánh dấu đã đọc" class="font-weight-bold btn bg-gradient-info px-4 ml-3" />
+                            </div>
+                        }
+                        
+                       
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="FeedbackId" />
+                    <table class="table table-bordered table-white">
+                        <thead>
+                            <tr class="text-center">
+                                <th style="width:50px">FeedBackId</th>
+                                <th style="width:300px">Họ tên</th>
+                                <th>Email</th>
+                                <td style="max-width:400px">Nội dung</td>
+                                <th style="width:150px">Trạng thái</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="text-center">
+                                <td scope="col">@Model.FeedbackId</td>
+                                <td>@Model.Fullname</td>
+                                <td>@Model.Email</td>
+                                <td style="max-width:350px">@Model.Contents</td>
+                                <td>
+                                    @if (Model.Active == true)
+                                    {
+                                        <input type="checkbox" checked disabled> <span> Đã đọc</span>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" disabled> <span> Chưa đọc</span>
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                   
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

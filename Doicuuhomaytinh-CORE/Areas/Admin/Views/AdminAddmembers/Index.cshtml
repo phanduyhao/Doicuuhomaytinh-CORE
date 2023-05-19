@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Doicuuhomaytinh_CORE.Models.Addmember>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="font-weight-bold text-success ">Quản lý Tuyển thành viên</h3>
+    </div>
+</div>
+
+<div class="mt-5">
+    @foreach (var item in Model)
+    {
+        <a asp-action="Edit" asp-route-id="@item.AddmemberId" class="btn btn-primary px-4 float-right font-weight-bold mb-5">Chỉnh sửa</a>
+        <div class="mt-5">
+            @Html.Raw(item.Contents)
+
+        </div>
+
+    }
+
+</div>

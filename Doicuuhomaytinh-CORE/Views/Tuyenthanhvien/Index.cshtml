@@ -1,0 +1,99 @@
+﻿@model Doicuuhomaytinh_CORE.Models.Addmember
+@{
+    ViewData["Title"] = "Tuyển thành viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@*<section class="page-header mx-auto" style="background-image: url(/images/news/@Model.Thumb);">
+*@
+
+<div class="bg-news-details position-relative" style="background-image: url(/images/anhchung/Tuyentv1.jpg);background-size:contain; padding:13%; ">
+    @*<img class="img-fluid w-100 " src="/images/news/@Model.Thumb" />*@
+    <div class="overlay-news-details" style="background: linear-gradient(180deg, #4a4a4a8a, black);"></div>
+    <div class="page-header-title text-center position-relative text-white font-system" style="max-width:1200px; ">@*
+        <h1 class="font-weight-bold">@Model.Title</h1>*@
+        <h1 style="border-left:5px solid yellow; font-size:56px" class="pl-3 text-white font-weight-bold font-system">THÔNG BÁO TUYỂN THÀNH VIÊN</h1>
+        <h3>@Model.CreateDate</h3>
+
+    </div>
+</div>
+
+<!-- /.tim-container -->
+@*</section>
+*@
+<section class="blog-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8">
+                <article class="blog-post-list mb-0">
+                    <!-- .post-thumbnail -->
+
+                    <div class="entry-content-wrapper">
+                        <!-- .entry-meta -->
+
+                        <header class="entry-header hide-topbar">
+                            <h1 class="font-weight- bold text-center text-black font-system" >
+                                Thông báo tuyển thành viên Đội cứu hộ máy tính Vinhuni
+
+                            </h1>
+                        </header>
+                        <!-- .entry-header -->
+
+                        <div class="entry-content">
+                            @Html.Raw(Model.Contents)
+                        </div>
+                        <!-- /.entry-content -->
+
+                    </div>
+                    <!-- .entry-content-wrapper -->
+
+                </article>
+
+
+                <!-- /.comments-area -->
+            </div>
+            <!-- /.col-lg-8 -->
+
+            <div class="col-lg-3 col-md-4">
+                <div class="sitebar">
+                   
+                    @await Component.InvokeAsync("AdsView")
+                    <aside class="widget ">
+                        <div class="fb-page" data-href="https://www.facebook.com/chmtvinhuni" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/chmtvinhuni" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/chmtvinhuni">Đội Cứu Hộ Máy Tính VinhUni</a></blockquote></div>
+
+                    </aside>
+                    <aside class="widget ">
+                        <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=100075966206160" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/chmtvinhuni" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/chmtvinhuni">Đội Cứu Hộ Máy Tính VinhUni</a></blockquote></div>
+
+                    </aside>
+
+                </div>
+                <!-- /.site-sitebar -->
+            </div>
+            <!-- /.col-lg-3 -->
+        </div>
+
+    </div>
+@*    <div class="container pt-5 border-top">
+
+        <div class="  entry-content-wrapper">
+            @if (Baivietlienquan != null && Baivietlienquan.Count() > 0)
+            {
+                foreach (var item in Baivietlienquan)
+                {
+                    string _url = $"/tin-tuc/{item.Alias}-{item.PostId}.html";
+
+                    <div class="card" style="width: 18rem;">
+                        <a href="@_url"><img class="card-img-top img-fluid" src="~/images/news/@item.Thumb" alt="@item.Title"></a>
+                        <div class="card-body">
+                            <h5><a class="text-dark" href="@_url">@item.Title</a></h5>
+                            <span class="entry-meta post-date">
+                                <a class="text-dark" href="@_url">@item.CreateDate</a>
+                            </span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>*@
+</section>
